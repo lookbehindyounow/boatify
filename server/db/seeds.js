@@ -3,7 +3,8 @@ db.dropDatabase();
 
 db.locations.insertMany([
   {
-    name:"Cala Pi de la Posada / Formentor Beach",
+    name:"Cala Pi de la Posada",
+    english_name:"Formentor Beach",
     travel_time:15,
     price_morning: 20,
     price_afternoon: 25,
@@ -12,6 +13,7 @@ db.locations.insertMany([
   },
   {
     name:"Cala Sant Vicenc",
+    english_name:"Cove of St Vincent",
     travel_time:80,
     price_morning: 40,
     price_afternoon: 45,
@@ -20,6 +22,7 @@ db.locations.insertMany([
   },
   {
     name:"S'Illot",
+    english_name:"The Islet",
     travel_time:30,
     price_morning: 25,
     price_afternoon: 30,
