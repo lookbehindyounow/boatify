@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { useEffect, useState } from "react";
 import Cards from "./components/Cards";
+import Button from "./components/Button";
 
 function App() {
   useEffect(() => {
@@ -28,7 +29,7 @@ function App() {
         <h2>AHOY!</h2>
         <h3>All hands on deck.</h3>
         <br/>
-        <button>BOOK NOW</button>
+        <Button title="Book Now" whiteButton={true}/>
       </div>
       <img src="public/boat_img.png"/>
     </Hero>
@@ -72,13 +73,6 @@ const Hero = styled.div`
     color: white;
     h2{
       font-size: 50px;
-    }
-    button{
-      width: fit-content;
-      padding: 5px;
-      border-radius: 30px;
-      border: none;
-      font-size: 20px;
     }
   }
   img{
