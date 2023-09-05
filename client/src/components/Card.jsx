@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 export default function Card({ destination }) {
   return (
     <CardBlock>
-      <Title>{destination.name}</Title>
+      <Link to={`/card/${destination._id}`} state={ destination }><Title>{destination.name}</Title></Link>
       <BottomBlock>
         <Button title={"Book Now"}></Button>
         <p>from</p>
