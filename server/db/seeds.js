@@ -27,3 +27,23 @@ db.locations.insertMany([
     price_base: 15,
     }
 ]);
+db.extras.insertMany([
+    {
+        name:"Bacon Roll",
+        price:5
+    },
+    {
+        name:"Bucket of Beers",
+        price:25
+
+    },
+    {
+        name:"Champagne",
+        price:35
+    },
+    {
+        name:"Ice Lollies",
+        price:10
+    }
+
+])
