@@ -1,15 +1,20 @@
-import { useEffect } from "react";
 import styled from "styled-components"
+import { useEffect, useState } from "react";
+import Cards from "./components/Cards";
 
 function App() {
   useEffect(() => {
     fetching();
   }, []);
 
+  const [destinations, setDestinations] = useState([])
+
   const fetching = async () => {
     const collection = "locations";
     const res = await fetch(`http://localhost:7777/api/${collection}`);
     const data = await res.json();
+    setDestinations(data)
+
     console.log(data);
   };
 
@@ -27,6 +32,7 @@ function App() {
       </div>
       <img src="public/boat_img.png"/>
     </Hero>
+    <Cards destinations={destinations}/>
   </>;
 }
 
