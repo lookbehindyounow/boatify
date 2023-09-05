@@ -2,8 +2,12 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { useState } from "react"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 function CalendarPage(){
+  const location = useLocation()
+  const destination = location.state
+
   const [startDate, setStartDate] = useState(new Date())
   return <>
     <CalendarPageStyle>

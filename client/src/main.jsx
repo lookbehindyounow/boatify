@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './style.css'
-import CardPage from './components/CardPage.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import CalendarPage from './components/CalendarPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/card/:id",
-    element: <CardPage />
+    element: <CalendarPage />
   }
 ])
 
