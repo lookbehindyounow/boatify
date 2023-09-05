@@ -44,5 +44,16 @@ db.extras.insertMany([
     name:"Ice Lollies",
     price:10
   }
-
 ])
+db.orders.insertOne(
+  {
+    destination: "Cala Pi de la Posada / Formentor Beach",
+    time_of_day: "morning",
+    passengers: 4,
+    price: 125,
+    extras: [{
+      name:"champagne",
+      quantity:1
+    }]
+  }
+)
