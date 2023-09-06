@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
 import "/static/Calendar.css";
-import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
 import Button from "./Button";
+import Page from "./Page";
 
 function CalendarPage({ booking, setBooking, setStep }) {
   const [value, setNewValue] = useState(new Date());
@@ -51,15 +51,6 @@ function CalendarPage({ booking, setBooking, setStep }) {
   );
 }
 export default CalendarPage;
-
-const Page = styled.div`
-  height: 100vh;
-  padding-top: 12vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-`;
 
 const CalendarPageStyle = styled.section`
   display: flex;

@@ -4,6 +4,7 @@ import Cards from "./components/Cards";
 import Button from "./components/Button";
 import CalendarPage from "./components/CalendarPage";
 import Summary from "./components/Summary";
+import Extras from "./components/Extras";
 
 function App() {
   useEffect(() => {
@@ -24,23 +25,11 @@ function App() {
   const renderSwitch = (step) => {
     switch (step) {
       default:
-        console.log("HAS THIS EVER HAPPENED TO YOU?")
         return (
           <>
-            <Hero>
-              <div>
-                <h2>AHOY!</h2>
-                <h3>All hands on deck.</h3>
-                <br />
-                <Button title="Book Now" colour="white"/>
-              </div>
-              <img src="static/boat_img.png" />
-            </Hero>
-            <Cards
-              destinations={destinations}
-              setStep={setStep}
-              setBooking={setBooking}
-            />
+            <p style={{paddingTop:"12vh"}}>there's no switch for this case</p>
+            <img style={{width:"80vw",height:"50vw"}}
+              src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"/>
           </>
         );
 
@@ -67,6 +56,26 @@ function App() {
         return (
           <>
             <CalendarPage
+              booking={booking}
+              setBooking={setBooking}
+              setStep={setStep}
+            />
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <Extras
+              booking={booking}
+              setBooking={setBooking}
+              setStep={setStep}
+            />
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <Summary
               booking={booking}
               setBooking={setBooking}
               setStep={setStep}
