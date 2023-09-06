@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import Button from "./components/Button";
 import CalendarPage from "./components/CalendarPage";
+import Summary from "./components/Summary";
 
 function App() {
   useEffect(() => {
@@ -32,7 +33,7 @@ function App() {
                 <br />
                 <Button title="Book Now" whiteButton={true} />
               </div>
-              <img src="public/boat_img.png" />
+              <img src="static/boat_img.png" />
             </Hero>
             <Cards
               destinations={destinations}
@@ -52,7 +53,7 @@ function App() {
                 <br />
                 <Button title="Book Now" whiteButton={true} />
               </div>
-              <img src="public/boat_img.png" />
+              <img src="static/boat_img.png" />
             </Hero>
             <Cards
               destinations={destinations}
@@ -77,7 +78,7 @@ function App() {
   return (
     <>
       <Nav>
-        <img src="public/logo.png" />
+        <img src="static/logo.png" />
         <h1>Boatify</h1>
       </Nav>
       {renderSwitch(step)}
