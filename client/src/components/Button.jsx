@@ -1,20 +1,28 @@
 import styled from 'styled-components'
 
-export default function Button({title,whiteButton=false}) {
+export default function Button({title,whiteButton=false,large=false}) {
+  if (typeof title=="object"){
+    console.log(title)
+    title=title.map(text=><span>{text}</span>)
+    console.log(title)
+  }
   return (
     <>
-    <ButtonBasic whiteButton={whiteButton}>{title}</ButtonBasic>
+      <ButtonBasic whiteButton={whiteButton} large={large}>{title}</ButtonBasic>
     </>
   )
 }
 
 const ButtonBasic = styled.button`
-  background-color: ${props=>props.whiteButton?"#f0f8fa":"#2f86c5"};
-  color: ${props=>props.whiteButton?"#2f86c5":"#f0f8fa"};
+  background-color: ${props=>props.whiteButton?"white":"#2f86c5"};
+  color: ${props=>props.whiteButton?"#2f86c5":"white"};
   border-style: none;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 20px;
-  width: 130px;
+  padding: ${props=>props.large?"25px":"10px"};
+  font-size: ${props=>props.large?"25px":"18px"};
+  font-weight: ${props=>props.large?"800":"600"};
+  border-radius: ${props=>props.large?"25px":"20px"};
+  width: ${props=>props.large?"100%":"130px"};
+  display: flex;
+  justify-content: ${props=>typeof props.title=="object"?"space-between":"center"};
+  gap: 20px;
 `

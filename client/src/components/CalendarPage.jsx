@@ -4,11 +4,9 @@ import { useLocation } from "react-router-dom";
 import Calendar from "react-calendar";
 import "../../public/Calendar.css";
 import { useEffect } from "react";
+import CardPageStyle from "./CardPageStyle";
 
 function CalendarPage() {
-  const location = useLocation();
-  const destination = location.state;
-
   const [newBooking, setNewBooking] = useState({
     date: "",
     slot: "",
@@ -59,19 +57,6 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-`;
-
-const CardPageStyle = styled.div`
-  padding: 10px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border: solid 2px #2f86c5;
-  border-radius: 20px;
-  width: 90vw;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 `;
 
