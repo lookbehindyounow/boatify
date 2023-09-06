@@ -10,6 +10,7 @@ function App() {
 
   const [destinations, setDestinations] = useState([]);
   const [booking, setBooking] = useState({});
+  const [step, setStep] = useState(0);
 
   const fetching = async () => {
     const collection = "locations";

@@ -6,29 +6,25 @@ import "../../public/Calendar.css";
 import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
 
-function CalendarPage() {
-  const [newBooking, setNewBooking] = useState({
-    date: "",
-    slot: "",
-    extras: [],
-  });
-
+function CalendarPage({ booking, setBooking }) {
   const [value, setNewValue] = useState(new Date());
+  let takenDates = [];
 
-  const setBooking = () => {
-    setNewBooking({
-      date: value,
-      slot: "",
-      extras: [],
-    });
-  };
-
-    useEffect(() => {
-  setBooking()
-  }, [value])
+  useEffect(() => {
+    fetch("http://localhost:7777/api/orders")
+      .then((res) => res.json())
+      .then(
+        (data) =>
+          (takendates = data.filter(
+            (datum) => datum.location == booking.location
+          ))
+      );
+    //Here we need to find in the api which days are free for that destination
+  }, []);
 
   console.log("🚀 ~ value:", value);
   console.log("🚀 ~ booking_value:", newBooking);
+  console.log(takenDates);
 
   return (
     <>
@@ -39,7 +35,13 @@ function CalendarPage() {
         <CardPageStyle>
           <h4 style={{ marginBottom: "20px" }}>Pick your date</h4>
           <CalendarPageStyle>
-            <Calendar value={value} onChange={setNewValue} />
+            <Calendar
+              value={value}
+              onChange={(e) => {
+                setNewValue(value);
+                setBooking({ ...booking, date: e.target.value });
+              }}
+            />
           </CalendarPageStyle>
           <p style={{ color: "#832929", paddingTop: "20px" }}>
             Morning only available{" "}
