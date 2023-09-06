@@ -50,10 +50,11 @@ db.extras.insertMany([
 ])
 db.orders.insertOne(
   {
-    destination: "Cala Pi de la Posada / Formentor Beach",
-    time_of_day: "morning",
+    location: "Cala Pi de la Posada",
+    morning:true,
     passengers: 4,
     price: 125,
+    date: "Waiting for dayjs" ,
     extras: [{
       name:"champagne",
       quantity:1

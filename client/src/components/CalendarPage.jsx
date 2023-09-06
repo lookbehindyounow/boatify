@@ -6,30 +6,33 @@ import "../../public/Calendar.css";
 import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
 
-function CalendarPage() {
-  const [newBooking, setNewBooking] = useState({
-    date: "",
-    slot: "",
-    extras: [],
-  });
-
+function CalendarPage({ booking, setBooking, setStep }) {
   const [value, setNewValue] = useState(new Date());
-
-  const setBooking = () => {
-    setNewBooking({
-      date: value,
-      slot: "",
-      extras: [],
-    });
-  };
-
-    useEffect(() => {
-  setBooking()
-  }, [value])
-
-  console.log("🚀 ~ value:", value);
-  console.log("🚀 ~ booking_value:", newBooking);
-
+  const [takenDates, setTakenDates] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:7777/api/orders")
+      .then((res) => res.json())
+      .then((data) =>
+        setTakenDates(
+          data
+            .filter((datum) => {
+              console.log(datum);
+              console.log(
+                value,
+                datum,
+                datum.location == booking.location && datum.date > value
+              );
+              return datum.location == booking.location && datum.date > value;
+            })
+            .map((match) => {
+              location: match.location;
+              morning: match.morning;
+              afternoon: match.afternoon;
+            })
+        )
+      );
+    //Here we need to find in the api which days are free for that destination
+  }, []);
   return (
     <>
       <Page>
@@ -39,7 +42,12 @@ function CalendarPage() {
         <CardPageStyle>
           <h4 style={{ marginBottom: "20px" }}>Pick your date</h4>
           <CalendarPageStyle>
-            <Calendar value={value} onChange={setNewValue} />
+            <Calendar
+              value={value}
+              onChange={(e) => {
+                setBooking({ ...booking, date: e });
+              }}
+            />
           </CalendarPageStyle>
           <p style={{ color: "#832929", paddingTop: "20px" }}>
             Morning only available{" "}

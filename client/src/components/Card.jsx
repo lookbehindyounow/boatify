@@ -3,16 +3,24 @@ import styled from "styled-components";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 
-export default function Card({ destination }) {
+export default function Card({ destination, setStep, setBooking }) {
   return (
-    <CardBlock>
-      <Title>{destination.name}</Title>
-      <BottomBlock>
-        <Button title={"Book Now"}></Button>
-        <p>from</p>
+    <>
+      <CardBlock>
+        <Title>{destination.name}</Title>
+        <BottomBlock>
+          <Button
+            title={"Book Now"}
+            action={() => {
+              setBooking({ location: destination.name });
+              setStep(1);
+            }}
+          ></Button>
+          <p>from</p>
           <Price>£{destination.price_morning}</Price>
-      </BottomBlock>
-    </CardBlock>
+        </BottomBlock>
+      </CardBlock>
+    </>
   );
 }
 
@@ -40,9 +48,8 @@ const BottomBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 const Price = styled.h3`
   font-size: 55px;
   color: #2f86c5;
-  
-  `
+`;

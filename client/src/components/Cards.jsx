@@ -1,12 +1,16 @@
 import Card from "./Card";
-import styled from 'styled-components'
+import styled from "styled-components";
 
-function Cards({ destinations }) {
+function Cards({ destinations, setStep, setBooking }) {
   return (
     <>
       <CardsView>
         {destinations.map((destination) => (
-          <Card destination={destination} />
+          <Card
+            destination={destination}
+            setStep={setStep}
+            setBooking={setBooking}
+          />
         ))}
       </CardsView>
     </>
@@ -20,4 +24,4 @@ const CardsView = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 10px;
-`
+`;
