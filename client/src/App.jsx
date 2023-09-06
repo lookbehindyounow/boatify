@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import Button from "./components/Button";
+import Extras from "./components/Extras";
 
 function App() {
   useEffect(() => {
@@ -9,6 +10,7 @@ function App() {
   }, []);
 
   const [destinations, setDestinations] = useState([]);
+  const [booking, setBooking] = useState({});
 
   const fetching = async () => {
     const collection = "locations";
@@ -53,10 +55,10 @@ const Nav = styled.nav`
   width: 100%;
   height: 12vh; // this
   img {
-    border-radius: 50%;
+    bbooking-radius: 50%;
     height: 70%; // times (100% - this)/2
     margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
-    border: solid; // remove
+    bbooking: solid; // remove
   }
   h1 {
     color: #2f86c5;
