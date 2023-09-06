@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
 import Calendar from "react-calendar";
 import "../../public/Calendar.css";
-import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
+import Button from "./Button";
 
 function CalendarPage({ booking, setBooking, setStep }) {
   const [value, setNewValue] = useState(new Date());
@@ -49,9 +48,11 @@ function CalendarPage({ booking, setBooking, setStep }) {
               }}
             />
           </CalendarPageStyle>
-          <p style={{ color: "#832929", paddingTop: "20px" }}>
-            Morning only available{" "}
-          </p>
+          <div style={{display:"flex", width:"100%", marginTop:"5px", gap:"5px", justifyContent:"space-between"}}>
+            <Button title="Morning" price="£12 per person" action={setBooking({...booking,morning:true})}/>
+            <Button title="Afternoon" price="£300 per person" action={setBooking({...booking,afternoon:true})}/>
+            <Button title="Full day" price="15p per person" action={setBooking({...booking,morning:true,afternoon:true})}/>
+          </div>
         </CardPageStyle>
       </Page>
     </>
@@ -61,7 +62,7 @@ export default CalendarPage;
 
 const Page = styled.div`
   height: 100vh;
-  border: solid 1px red;
+  padding-top: 12vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -72,7 +73,6 @@ const CalendarPageStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   width: 100%;
   justify-content: space-around;
 `;

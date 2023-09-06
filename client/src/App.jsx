@@ -23,6 +23,7 @@ function App() {
   const renderSwitch = (step) => {
     switch (step) {
       default:
+        console.log("HAS THIS EVER HAPPENED TO YOU?")
         return (
           <>
             <Hero>
@@ -30,7 +31,7 @@ function App() {
                 <h2>AHOY!</h2>
                 <h3>All hands on deck.</h3>
                 <br />
-                <Button title="Book Now" whiteButton={true} />
+                <Button title="Book Now" colour="white"/>
               </div>
               <img src="public/boat_img.png" />
             </Hero>
@@ -50,7 +51,7 @@ function App() {
                 <h2>AHOY!</h2>
                 <h3>All hands on deck.</h3>
                 <br />
-                <Button title="Book Now" whiteButton={true} />
+                <Button title="Book Now" colour="white"/>
               </div>
               <img src="public/boat_img.png" />
             </Hero>

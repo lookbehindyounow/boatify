@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
-import { Link } from "react-router-dom";
 
 export default function Card({ destination, setStep, setBooking }) {
   return (
