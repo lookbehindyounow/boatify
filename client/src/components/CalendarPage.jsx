@@ -52,6 +52,7 @@ function CalendarPage() {
   );
 }
 export default CalendarPage;
+
 const Page = styled.div`
   height: 100vh;
   border: solid 1px red;
@@ -81,12 +82,4 @@ const CalendarPageStyle = styled.section`
   height: 100vh;
   width: 100%;
   justify-content: space-around;
-  div {
-    .react-datepicker__month {
-      margin: 0;
-      .react-datepicker__week {
-        display: flex;
-      }
-    }
-  }
 `;

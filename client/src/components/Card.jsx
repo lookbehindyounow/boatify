@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 export default function Card({ destination }) {
   return (
     <CardBlock>
-      <Link to={`/card/${destination._id}`} state={ destination }><Title>{destination.name}</Title></Link>
+      <Title>{destination.name}</Title>
       <BottomBlock>
-        <Button title={"Book Now"}></Button>
+        <Link to={`/card/${destination._id}`} state={ destination }><Button title={"Book Now"}></Button></Link>
         <p>from</p>
           <Price>£{destination.price_morning}</Price>
       </BottomBlock>

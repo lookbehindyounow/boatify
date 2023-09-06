@@ -15,8 +15,6 @@ function App() {
     const res = await fetch(`http://localhost:7777/api/${collection}`);
     const data = await res.json();
     setDestinations(data);
-
-    console.log(data);
   };
 
   return (
