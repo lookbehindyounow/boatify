@@ -38,6 +38,7 @@ function CalendarPage({ booking, setBooking, setStep }) {
         <h2 style={{ fontSize: "35px", color: "#64b2d4" }}>
           It's time to rig it up
         </h2>
+        <br/>
         <CardPageStyle>
           <h4 style={{ marginBottom: "20px" }}>Pick your date</h4>
           <CalendarPageStyle>
@@ -49,11 +50,12 @@ function CalendarPage({ booking, setBooking, setStep }) {
             />
           </CalendarPageStyle>
           <div style={{display:"flex", width:"100%", marginTop:"5px", gap:"5px", justifyContent:"space-between"}}>
-            <Button title="Morning" price="£12 per person" action={setBooking({...booking,morning:true})}/>
-            <Button title="Afternoon" price="£300 per person" action={setBooking({...booking,afternoon:true})}/>
-            <Button title="Full day" price="15p per person" action={setBooking({...booking,morning:true,afternoon:true})}/>
+            <Button title="Morning" price="£12 per person" action={()=>setBooking({...booking,morning:true})}/>
+            <Button title="Afternoon" price="£300 per person" action={()=>setBooking({...booking,afternoon:true})}/>
+            <Button title="Full day" price="15p per person" action={()=>setBooking({...booking,morning:true,afternoon:true})}/>
           </div>
         </CardPageStyle>
+        <Button title="next" action={()=>setStep(2)}/>
       </Page>
     </>
   );
