@@ -1,37 +1,27 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
-import "../../public/Calendar.css";
+import "/static/Calendar.css";
+import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
 import Button from "./Button";
 
 function CalendarPage({ booking, setBooking, setStep }) {
   const [value, setNewValue] = useState(new Date());
   const [takenDates, setTakenDates] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:7777/api/orders")
+    fetch("http://localhost:7777/api/orders/find_dates", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ location: booking.location }),
+    })
       .then((res) => res.json())
-      .then((data) =>
-        setTakenDates(
-          data
-            .filter((datum) => {
-              console.log(datum);
-              console.log(
-                value,
-                datum,
-                datum.location == booking.location && datum.date > value
-              );
-              return datum.location == booking.location && datum.date > value;
-            })
-            .map((match) => {
-              location: match.location;
-              morning: match.morning;
-              afternoon: match.afternoon;
-            })
-        )
-      );
-    //Here we need to find in the api which days are free for that destination
+      .then((data) => console.log(data))
   }, []);
+
   return (
     <>
       <Page>

@@ -48,16 +48,38 @@ db.extras.insertMany([
     price:10
   }
 ])
-db.orders.insertOne(
+db.orders.insertMany([
   {
     location: "Cala Pi de la Posada",
     morning:true,
-    passengers: 4,
+    passengers: 2,
     price: 125,
-    date: "Waiting for dayjs" ,
+    date: "2024-06-01" ,
+    extras: [{
+      name:"champagne",
+      quantity:1
+    }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    morning:true,
+    passengers: 6,
+    price: 125,
+    date: "2024-01-01" ,
+    extras: [{
+      name:"champagne",
+      quantity:1
+    }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    afternoon:true,
+    passengers: 8,
+    price: 125,
+    date: "2023-08-03" ,
     extras: [{
       name:"champagne",
       quantity:1
     }]
   }
-)
+])
