@@ -37,7 +37,6 @@ function App() {
         <img src="public/boat_img.png" />
       </Hero>
       <Cards destinations={destinations} />
-      <Extras booking={booking} setBooking={setBooking} />
     </>
   );
 }

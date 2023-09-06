@@ -44,10 +44,10 @@ export default function Extras({ booking, setBooking }) {
                 defaultValue={booking[extra.name] ? booking[extra.name] : "0"}
                 required
                 min="0"
-                max="10"
+                max="100"
                 onChange={(e) => {
-                  if (e.target.value > 10) {
-                    e.target.value = 10;
+                  if (e.target.value > 100) {
+                    e.target.value = 100;
                   }
                   if (e.target.value < 0) {
                     e.target.value = 0;
