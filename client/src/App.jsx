@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import Button from "./components/Button";
+import CalendarPage from "./components/CalendarPage";
 
 function App() {
   useEffect(() => {
@@ -19,22 +20,67 @@ function App() {
     setDestinations(data);
   };
 
+  const renderSwitch = (step) => {
+    switch (step) {
+      default:
+        return (
+          <>
+            <Hero>
+              <div>
+                <h2>AHOY!</h2>
+                <h3>All hands on deck.</h3>
+                <br />
+                <Button title="Book Now" whiteButton={true} />
+              </div>
+              <img src="public/boat_img.png" />
+            </Hero>
+            <Cards
+              destinations={destinations}
+              setStep={setStep}
+              setBooking={setBooking}
+            />
+          </>
+        );
+
+      case 0:
+        return (
+          <>
+            <Hero>
+              <div>
+                <h2>AHOY!</h2>
+                <h3>All hands on deck.</h3>
+                <br />
+                <Button title="Book Now" whiteButton={true} />
+              </div>
+              <img src="public/boat_img.png" />
+            </Hero>
+            <Cards
+              destinations={destinations}
+              setStep={setStep}
+              setBooking={setBooking}
+            />
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <CalendarPage
+              booking={booking}
+              setBooking={setBooking}
+              setStep={setStep}
+            />
+          </>
+        );
+    }
+  };
+
   return (
     <>
       <Nav>
         <img src="public/logo.png" />
         <h1>Boatify</h1>
       </Nav>
-      <Hero>
-        <div>
-          <h2>AHOY!</h2>
-          <h3>All hands on deck.</h3>
-          <br />
-          <Button title="Book Now" whiteButton={true} />
-        </div>
-        <img src="public/boat_img.png" />
-      </Hero>
-      <Cards destinations={destinations} />
+      {renderSwitch(step)}
     </>
   );
 }
