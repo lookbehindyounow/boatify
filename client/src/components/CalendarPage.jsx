@@ -33,7 +33,6 @@ function CalendarPage({ booking, setBooking, setStep }) {
       );
     //Here we need to find in the api which days are free for that destination
   }, []);
-  console.log(value.getDate());
   return (
     <>
       <Page>
@@ -46,8 +45,7 @@ function CalendarPage({ booking, setBooking, setStep }) {
             <Calendar
               value={value}
               onChange={(e) => {
-                setNewValue(value);
-                setBooking({ ...booking, date: e.target.value });
+                setBooking({ ...booking, date: e });
               }}
             />
           </CalendarPageStyle>
