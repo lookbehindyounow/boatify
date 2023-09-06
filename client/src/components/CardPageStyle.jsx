@@ -7,8 +7,8 @@ const CardPageStyle = styled.div`
   border: solid 2px #2f86c5;
   border-radius: 20px;
   background-color: #f0f8fa;
-  width: 90vw;
-  height: 60vh;
+  width: calc(100vw - 20px);
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;

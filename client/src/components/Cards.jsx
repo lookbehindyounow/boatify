@@ -5,8 +5,9 @@ function Cards({ destinations, setStep, setBooking }) {
   return (
     <>
       <CardsView>
-        {destinations.map((destination) => (
+        {destinations.map((destination,i) => (
           <Card
+            key={i}
             destination={destination}
             setStep={setStep}
             setBooking={setBooking}
