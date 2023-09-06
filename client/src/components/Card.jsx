@@ -8,7 +8,7 @@ export default function Card({ destination }) {
     <CardBlock>
       <Title>{destination.name}</Title>
       <BottomBlock>
-        <Link to={`/card/${destination._id}`}><Button title={"Book Now"}></Button></Link>
+        <Button title={"Book Now"}></Button>
         <p>from</p>
           <Price>£{destination.price_morning}</Price>
       </BottomBlock>
