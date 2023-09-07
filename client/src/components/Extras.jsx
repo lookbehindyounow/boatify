@@ -23,6 +23,7 @@ export default function Extras({ booking, setBooking, setStep }) {
     fetch("http://localhost:7777/api/extras/")
       .then((res) => res.json())
       .then((data) => setExtras(data));
+    setBooking({...booking,passengers:1})
   }, []);
 
   return (
@@ -47,14 +48,14 @@ export default function Extras({ booking, setBooking, setStep }) {
               </label>
               <input
                 type="number"
-                defaultValue={booking?.passengers ? booking.passengers : "1"}
                 min="1"
                 max="10"
+                placeholder={booking.passengers}
                 onChange={(e) => {
                   if (e.target.value > 10) {
                     e.target.value = 10;
                   } else if (e.target.value < 0) {
-                    e.target.value = 0;
+                    e.target.value = 1;
                   }
                   if (Number(e.target.value)) {
                     setBooking({
