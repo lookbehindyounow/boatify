@@ -130,6 +130,7 @@ const Hero = styled.div`
   background-color: #64b2d4;
   height: 50vh;
   padding-top: 12vh;
+  margin-bottom: 10px;
   div {
     display: flex;
     flex-direction: column;

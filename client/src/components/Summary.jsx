@@ -150,6 +150,8 @@ const TotalCost = styled.h1`
   padding-bottom: 50px;
 `;
 const ButtonContainer = styled.div`
-  width: 60vw;
-  height: 20px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
 `;
