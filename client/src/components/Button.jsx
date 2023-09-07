@@ -33,8 +33,8 @@ const ButtonBasic = styled.button`
   border-radius: ${(props) => (props.large ? "25px" : "20px")};
   width: ${(props) => (props.large ? "100%" : "130px")};
   display: flex;
-  ${props=>props.large ? "gap: 20px" : "flex-direction: column"};
+  ${props=>props.large&&props.price ? "gap: 20px" : "flex-direction: column"};
   align-items: center;
   justify-content: ${(props) =>
-    typeof props.price && props.large ? "space-between" : "center"};
+    typeof props.price && props.large ? "space-around" : "center"};
 `;
