@@ -81,5 +81,16 @@ db.orders.insertMany([
       name:"champagne",
       quantity:1
     }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    afternoon:true,
+    passengers: 6,
+    price: 125,
+    date: "2024-01-01" ,
+    extras: [{
+      name:"champagne",
+      quantity:1
+    }]
   }
 ])

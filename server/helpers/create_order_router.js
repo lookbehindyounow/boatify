@@ -21,8 +21,11 @@ const createRouter = function (collection) {
   router.post("/find_dates", (req, res) => {
     const booking = req.body;
     collection
-      .find({ date: { $gte: todayFormated }, location: booking.location })
-      .project({ date: 1, _id: 0 })
+      .find({
+        date: { $gte: todayFormated },
+        location: booking.location,
+      })
+      .project({ date: 1, _id: 0, morning: 1, afternoon: 1 })
       .toArray()
       .then((docs) => res.json(docs))
       .catch((err) => {
