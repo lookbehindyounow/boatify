@@ -88,7 +88,7 @@ function App() {
   return (
     <>
       <Nav>
-        <img src="static/logo.png" />
+        <img src="static/logo.svg" />
         <h1>Boatify</h1>
       </Nav>
       {renderSwitch(step)}
@@ -117,7 +117,8 @@ const Nav = styled.nav`
     margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
   }
   h1 {
-    color: #2f86c5;
+    color: #144c74;
+    font-size: 40px;
   }
 `;
 
