@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
-export default function Summary() {
+export default function Summary({booking}) {
   useEffect(() => {
     fetching();
   }, []);
 
   const [extras, setExtras] = useState([]);
+  console.log(booking);
 
   const fetching = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
