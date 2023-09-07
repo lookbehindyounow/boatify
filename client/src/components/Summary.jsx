@@ -45,7 +45,7 @@ export default function Summary() {
       extras.map((extra) => {
         if (extra.name == key) {
           (total += extra.price * value)
-          itemsNames.push(key)
+          itemsNames.push([ String(`${value} x `), key ])
         } 
     });
     }
@@ -54,6 +54,7 @@ export default function Summary() {
 
   const extrasData = totalExtras(booking)
   const totalCostForPassengers = totalPassengers(booking)
+  console.log(extrasData);
 
   return (
     <>
