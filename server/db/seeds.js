@@ -54,7 +54,7 @@ db.orders.insertMany([
     morning:true,
     passengers: 2,
     price: 125,
-    date: "2024-06-01" ,
+    date: "2024-6-1" ,
     extras: [{
       name:"champagne",
       quantity:1
@@ -65,7 +65,7 @@ db.orders.insertMany([
     morning:true,
     passengers: 6,
     price: 125,
-    date: "2024-01-01" ,
+    date: "2024-1-1" ,
     extras: [{
       name:"champagne",
       quantity:1
@@ -76,7 +76,7 @@ db.orders.insertMany([
     afternoon:true,
     passengers: 8,
     price: 125,
-    date: "2023-08-03" ,
+    date: "2024-8-3" ,
     extras: [{
       name:"champagne",
       quantity:1
@@ -87,7 +87,7 @@ db.orders.insertMany([
     afternoon:true,
     passengers: 6,
     price: 125,
-    date: "2024-01-01" ,
+    date: "2024-1-1" ,
     extras: [{
       name:"champagne",
       quantity:1
