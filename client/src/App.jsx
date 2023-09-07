@@ -21,7 +21,7 @@ function App() {
     const data = await res.json();
     setDestinations(data);
   };
-
+  
   const renderSwitch = (step) => {
     switch (step) {
       default:
@@ -32,7 +32,6 @@ function App() {
               src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"/>
           </>
         );
-
       case 0:
         return (
           <>
@@ -93,7 +92,7 @@ function App() {
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
       </Nav>
-      {renderSwitch(3)}
+      {renderSwitch(step)}
     </>
   );
 }
