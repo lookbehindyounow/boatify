@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
 import "/static/Calendar.css";
-import { useEffect } from "react";
 import CardPageStyle from "./CardPageStyle";
 import Button from "./Button";
 
