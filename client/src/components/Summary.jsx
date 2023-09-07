@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
-export default function Summary() {
+export default function Summary({ booking, setBooking }) {
   useEffect(() => {
     fetching();
   }, []);
 
   const [extras, setExtras] = useState([]);
+  console.log(booking);
 
   const fetching = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
@@ -16,46 +17,45 @@ export default function Summary() {
   };
 
   //const booking = {
-    //name: "Cala Pi de la Posada",
-    //english_name: "Formentor Beach",
-    //date: "2024-06-01",
-    //passengers: 2,
-    //base_price: 10,
-    //morning: true,
-    //price_morning: 20,
-    //["Bacon Roll"]: 5,
-    //["Bucket of Beers"]: 2,
-    //["Champagne"]: 3,
+  //name: "Cala Pi de la Posada",
+  //english_name: "Formentor Beach",
+  //date: "2024-06-01",
+  //passengers: 2,
+  //base_price: 10,
+  //morning: true,
+  //price_morning: 20,
+  //["Bacon Roll"]: 5,
+  //["Bucket of Beers"]: 2,
+  //["Champagne"]: 3,
   //};
 
   const totalPassengers = (booking) => {
-    let total = 0
+    let total = 0;
     for (const [key, value] of Object.entries(booking)) {
-      if (key == ( "price_morning" || "price_afternoon" || "price_full_day" )) {
-        total = ( value * booking.passengers ) + booking.base_price
+      if (key == ("price_morning" || "price_afternoon" || "price_full_day")) {
+        total = value * booking.passengers + booking.base_price;
       }
     }
-    return total
-  }
+    return total;
+  };
 
   const totalExtras = (booking) => {
     let total = 0;
-    let itemsNames = []
+    let itemsNames = [];
     for (const [key, value] of Object.entries(booking)) {
       extras.map((extra) => {
         if (extra.name == key) {
-          (total += extra.price * value)
-          itemsNames.push([ String(`${value} x `), key ])
-        } 
-    });
+          total += extra.price * value;
+          itemsNames.push([String(`${value} x `), key]);
+        }
+      });
     }
-    return [total, itemsNames]
+    return [total, itemsNames];
   };
 
-  const extrasData = totalExtras(booking)
-  const totalCostForPassengers = totalPassengers(booking)
-  const totalTrip = totalCostForPassengers + extrasData[0]
-  console.log(extrasData);
+  const extrasData = totalExtras(booking);
+  const totalCostForPassengers = totalPassengers(booking);
+  const totalTrip = totalCostForPassengers + extrasData[0];
 
   return (
     <>
@@ -74,7 +74,9 @@ export default function Summary() {
           <TitleBlock>
             <UnitTitle>Extras</UnitTitle>
             {/* {extrasData[0].length ? (extrasData[0].map((item) => <OrderList>{item}</OrderList>)) : null } */}
-            {extrasData[1].map(item => <OrderList>{item}</OrderList>)}
+            {extrasData[1].map((item) => (
+              <OrderList>{item}</OrderList>
+            ))}
           </TitleBlock>
           <UnitPrice>£{extrasData[0]}</UnitPrice>
         </SummaryBlock>
@@ -82,7 +84,12 @@ export default function Summary() {
         <TotalTitle>Total</TotalTitle>
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
-          <Button title={"Checkout"} large={true}></Button>
+          <Button title={"Checkout"}
+           large={true}
+           action={() => {
+            setBooking({ ...booking, total: totalTrip})
+          }}
+            ></Button>
         </ButtonContainer>
       </SummaryPage>
     </>
