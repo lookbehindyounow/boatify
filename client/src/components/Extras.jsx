@@ -85,10 +85,13 @@ export default function Extras({ booking, setBooking, setStep }) {
                     }
                     // the following is to stop "bacon rolls": 0 being added to the booking
                     if (Number(e.target.value)) {
-                      setBooking({ ...booking, [extra.name]: e.target.value });
+                      setBooking({
+                        ...booking,
+                        [extra.name]: Number(e.target.value),
+                      });
                       console.log("booking:", {
                         ...booking,
-                        [extra.name]: e.target.value,
+                        [extra.name]: Number(e.target.value),
                       });
                     } else {
                       const { [extra.name]: toRemove, ...rest } = booking; // destructuring an object creates variables, which can't have dynamic names, so when destructuring an object with dynamic keys we have to explicitly define variable names, hence [extra.name]:toRemove
