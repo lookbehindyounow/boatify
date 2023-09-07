@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import CalendarPage from "./components/CalendarPage";
 import Summary from "./components/Summary";
 import Extras from "./components/Extras";
+import Checkout from "./components/Checkout";
 
 function App() {
   useEffect(() => {
@@ -91,7 +92,7 @@ function App() {
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
       </Nav>
-      {renderSwitch(step)}
+      {renderSwitch(3)}
     </>
   );
 }
