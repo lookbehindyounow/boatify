@@ -92,7 +92,7 @@ function App() {
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
       </Nav>
-      {renderSwitch(3)}
+      {renderSwitch(step)}
     </>
   );
 }
