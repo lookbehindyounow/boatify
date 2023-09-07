@@ -57,10 +57,13 @@ export default function Extras({ booking, setBooking, setStep }) {
                     e.target.value = 0;
                   }
                   if (Number(e.target.value)) {
-                    setBooking({ ...booking, passengers: e.target.value });
+                    setBooking({
+                      ...booking,
+                      passengers: Number(e.target.value),
+                    });
                     console.log("booking:", {
                       ...booking,
-                      passengers: e.target.value,
+                      passengers: Number(e.target.value),
                     });
                   }
                 }}
