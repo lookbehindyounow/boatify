@@ -6,10 +6,11 @@ import CardPageStyle from "./CardPageStyle";
 import Button from "./Button";
 import Page from "./Page";
 
-function CalendarPage({ booking, setBooking, setStep }) {
-  const [value, setNewValue] = useState(new Date());
+function CalendarPage({ booking, setBooking, setStep, prices }) {
+  const [value, setValue] = useState(new Date());
   const [takenDates, setTakenDates] = useState([]);
   const [fullyTakenDates, setFullyTakenDates] = useState([]);
+  const [buttonColours,setButtonColours]=useState({"Morning":null, "Afternoon":null, "Full day":null})
 
   useEffect(() => {
     fetch("http://localhost:7777/api/orders/find_dates", {
@@ -38,6 +39,20 @@ function CalendarPage({ booking, setBooking, setStep }) {
       });
   }, []);
 
+  useEffect(()=>{
+    const selected=`${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`;
+    const todaysBooking=takenDates.filter(slot=>slot.date==selected)[0]
+    if (todaysBooking){
+      todaysBooking.morning&&setButtonColours({"Morning":"grey", "Afternoon":"#2f86c5", "Full day":"grey"})
+      todaysBooking.afternoon&&setButtonColours({"Morning":"#2f86c5", "Afternoon":"grey", "Full day":"grey"})
+    } else {
+      setButtonColours({"Morning":null, "Afternoon":null, "Full day":null})
+    }
+    const {morning, afternoon, ...rest} = booking
+    setBooking(rest)
+    console.log(rest)
+  },[value])
+
   const tileDisabled = ({ date }) => {
     return fullyTakenDates.find(
       (dDate) =>
@@ -61,6 +76,7 @@ function CalendarPage({ booking, setBooking, setStep }) {
               value={value}
               tileDisabled={tileDisabled}
               onChange={(e) => {
+                setValue(e)
                 setBooking({ ...booking, date: e });
               }}
             />
@@ -76,24 +92,37 @@ function CalendarPage({ booking, setBooking, setStep }) {
           >
             <Button
               title="Morning"
-              price="£12 per person"
-              action={() => setBooking({ ...booking, morning: true, afternoon: false })}
-            />
+              price={`£${prices[3]} base + £${prices[0]} per person`}
+              colour={buttonColours}
+              action={() => {
+                setButtonColours({"Morning":"#2c7172", "Afternoon":buttonColours["Afternoon"]=="grey"?"grey":null, "Full day":buttonColours["Full day"]=="grey"?"grey":null})
+                setBooking({ ...booking, morning: true, afternoon: false })
+                console.log({ ...booking, morning: true, afternoon: false })
+              }}
+              />
             <Button
               title="Afternoon"
-              price="£300 per person"
-              action={() => setBooking({ ...booking, moning: false, afternoon: true })}
-            />
+              price={`£${prices[3]} base + £${prices[1]} per person`}
+              colour={buttonColours}
+              action={() => {
+                setButtonColours({"Morning":buttonColours["Morning"]=="grey"?"grey":null, "Afternoon":"#2c7172", "Full day":buttonColours["Full day"]=="grey"?"grey":null})
+                setBooking({ ...booking, morning: false, afternoon: true })
+                console.log({ ...booking, morning: false, afternoon: true })
+              }}
+              />
             <Button
               title="Full day"
-              price="15p per person"
-              action={() =>
+              price={`£${prices[3]} base + £${prices[2]} per person`}
+              colour={buttonColours}
+              action={() => {
+                setButtonColours({"Morning":buttonColours["Morning"]=="grey"?"grey":null, "Afternoon":buttonColours["Afternoon"]=="grey"?"grey":null, "Full day":"#2c7172"})
                 setBooking({ ...booking, morning: true, afternoon: true })
-              }
+                console.log({ ...booking, morning: true, afternoon: true })
+              }}
             />
           </div>
         </CardPageStyle>
-        <Button title="next" action={() => setStep(2)} />
+        <Button title="next" colour={booking.morning||booking.afternoon?"#2f86c5":"grey"} action={() => setStep(2)} />
       </Page>
     </>
   );

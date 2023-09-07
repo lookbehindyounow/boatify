@@ -16,8 +16,7 @@ function App() {
   const [step, setStep] = useState(0);
 
   const fetching = async () => {
-    const collection = "locations";
-    const res = await fetch(`http://localhost:7777/api/${collection}`);
+    const res = await fetch("http://localhost:7777/api/locations");
     const data = await res.json();
     setDestinations(data);
   };
@@ -53,12 +52,14 @@ function App() {
           </>
         );
       case 1:
+        const thisLocation=destinations.filter(destination=>destination.name==booking.location)[0]
         return (
           <>
             <CalendarPage
               booking={booking}
               setBooking={setBooking}
               setStep={setStep}
+              prices={[thisLocation.price_morning,thisLocation.price_afternoon,thisLocation.price_day,thisLocation.price_base]}
             />
           </>
         );
