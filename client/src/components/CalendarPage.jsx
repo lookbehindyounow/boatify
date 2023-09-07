@@ -40,8 +40,8 @@ function CalendarPage({ booking, setBooking, setStep }) {
             />
           </CalendarPageStyle>
           <div style={{display:"flex", width:"100%", marginTop:"5px", gap:"5px", justifyContent:"space-between"}}>
-            <Button title="Morning" price="£12 per person" action={()=>setBooking({...booking,morning:true})}/>
-            <Button title="Afternoon" price="£300 per person" action={()=>setBooking({...booking,afternoon:true})}/>
+            <Button title="Morning" price="£12 per person" action={()=>setBooking({...booking,morning:true,afternoon:false})}/>
+            <Button title="Afternoon" price="£300 per person" action={()=>setBooking({...booking,morning:false,afternoon:true})}/>
             <Button title="Full day" price="15p per person" action={()=>setBooking({...booking,morning:true,afternoon:true})}/>
           </div>
         </CardPageStyle>
