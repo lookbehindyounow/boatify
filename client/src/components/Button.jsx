@@ -7,10 +7,12 @@ export default function Button({
   large = false,
   action,
 }) {
-
+  if (colour=="grey" || (typeof colour=="object" && colour[title]=="grey")){
+    action=null
+  }
   return (
     <>
-      <ButtonBasic colour={colour} large={large} onClick={action}>
+      <ButtonBasic colour={typeof colour=="object" ? colour[title] ? colour[title] : "#2f86c5" : colour} large={large} onClick={action}>
         {large?<>
           <span>{price}</span><span>{title}</span>
         </>:<>
@@ -23,7 +25,7 @@ export default function Button({
 
 const ButtonBasic = styled.button`
   background-color: ${props=>props.colour};
-  color: ${props=>props.colour=="#2f86c5"?"white":"#2f86c5"};
+  color: ${props=>props.colour=="white"?"#2f86c5":"white"};
   border-style: none;
   padding: ${(props) => (props.large ? "25px" : "10px")};
   font-size: ${(props) => (props.large ? "25px" : "18px")};
