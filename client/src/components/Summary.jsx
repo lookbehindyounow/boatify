@@ -15,18 +15,18 @@ export default function Summary() {
     setExtras(data);
   };
 
-  const booking = {
-    name: "Cala Pi de la Posada",
-    english_name: "Formentor Beach",
-    date: "2024-06-01",
-    passengers: 2,
-    base_price: 10,
-    morning: true,
-    price_morning: 20,
-    ["Bacon Roll"]: 5,
-    ["Bucket of Beers"]: 2,
-    ["Champagne"]: 3,
-  };
+  //const booking = {
+    //name: "Cala Pi de la Posada",
+    //english_name: "Formentor Beach",
+    //date: "2024-06-01",
+    //passengers: 2,
+    //base_price: 10,
+    //morning: true,
+    //price_morning: 20,
+    //["Bacon Roll"]: 5,
+    //["Bucket of Beers"]: 2,
+    //["Champagne"]: 3,
+  //};
 
   const totalPassengers = (booking) => {
     let total = 0
@@ -54,6 +54,7 @@ export default function Summary() {
 
   const extrasData = totalExtras(booking)
   const totalCostForPassengers = totalPassengers(booking)
+  const totalTrip = totalCostForPassengers + extrasData[0]
   console.log(extrasData);
 
   return (
@@ -79,7 +80,7 @@ export default function Summary() {
         </SummaryBlock>
         <Underline />
         <TotalTitle>Total</TotalTitle>
-        <TotalCost>£355</TotalCost>
+        <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
           <Button title={"Checkout"} large={true}></Button>
         </ButtonContainer>
