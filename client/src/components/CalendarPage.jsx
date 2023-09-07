@@ -77,12 +77,12 @@ function CalendarPage({ booking, setBooking, setStep }) {
             <Button
               title="Morning"
               price="£12 per person"
-              action={() => setBooking({ ...booking, morning: true })}
+              action={() => setBooking({ ...booking, morning: true, afternoon: false })}
             />
             <Button
               title="Afternoon"
               price="£300 per person"
-              action={() => setBooking({ ...booking, afternoon: true })}
+              action={() => setBooking({ ...booking, moning: false, afternoon: true })}
             />
             <Button
               title="Full day"
