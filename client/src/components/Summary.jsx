@@ -4,39 +4,36 @@ import Button from "./Button";
 
 export default function Summary({ booking, setBooking }) {
   useEffect(() => {
-    fetching();
+    fetchingExtras();
+    fetchingLocations();
   }, []);
 
   const [extras, setExtras] = useState([]);
+  const [locationObject, setLocationObject] = useState([]);
   console.log(booking);
 
-  const fetching = async () => {
+  const fetchingExtras = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
     const data = await res.json();
     setExtras(data);
   };
 
-  //const booking = {
-  //name: "Cala Pi de la Posada",
-  //english_name: "Formentor Beach",
-  //date: "2024-06-01",
-  //passengers: 2,
-  //base_price: 10,
-  //morning: true,
-  //price_morning: 20,
-  //["Bacon Roll"]: 5,
-  //["Bucket of Beers"]: 2,
-  //["Champagne"]: 3,
-  //};
+  const fetchingLocations = async () => {
+    const res = await fetch(`http://localhost:7777/api/locations`);
+    const data = await res.json();
+    setLocationObject(data.find(locationFromDb=>locationFromDb.name==booking.location))
+  };
 
   const totalPassengers = (booking) => {
-    let total = 0;
-    for (const [key, value] of Object.entries(booking)) {
-      if (key == ("price_morning" || "price_afternoon" || "price_full_day")) {
-        total = value * booking.passengers + booking.base_price;
-      }
+    if (booking.morning&&booking.afternoon){
+      return locationObject.price_base + locationObject.price_day * booking.passengers
     }
-    return total;
+    if (booking.morning){
+      return locationObject.price_base + locationObject.price_morning * booking.passengers
+    }
+    if (booking.afternoon){
+      return locationObject.price_base + locationObject.price_afternoon * booking.passengers
+    }
   };
 
   const totalExtras = (booking) => {
