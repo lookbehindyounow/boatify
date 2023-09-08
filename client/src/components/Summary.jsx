@@ -11,6 +11,7 @@ export default function Summary({ booking, setBooking }) {
   const [extras, setExtras] = useState([]);
   const [locationObject, setLocationObject] = useState([]);
   console.log(booking);
+  console.log(locationObject);
 
   const fetchingExtras = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
@@ -21,18 +22,29 @@ export default function Summary({ booking, setBooking }) {
   const fetchingLocations = async () => {
     const res = await fetch(`http://localhost:7777/api/locations`);
     const data = await res.json();
-    setLocationObject(data.find(locationFromDb=>locationFromDb.name==booking.location))
+    setLocationObject(
+      data.find((locationFromDb) => locationFromDb.name == booking.location)
+    );
   };
 
   const totalPassengers = (booking) => {
-    if (booking.morning&&booking.afternoon){
-      return locationObject.price_base + locationObject.price_day * booking.passengers
+    if (booking.morning && booking.afternoon) {
+      return (
+        locationObject.price_base +
+        locationObject.price_day * booking.passengers
+      );
     }
-    if (booking.morning){
-      return locationObject.price_base + locationObject.price_morning * booking.passengers
+    if (booking.morning) {
+      return (
+        locationObject.price_base +
+        locationObject.price_morning * booking.passengers
+      );
     }
-    if (booking.afternoon){
-      return locationObject.price_base + locationObject.price_afternoon * booking.passengers
+    if (booking.afternoon) {
+      return (
+        locationObject.price_base +
+        locationObject.price_afternoon * booking.passengers
+      );
     }
   };
 
@@ -60,8 +72,8 @@ export default function Summary({ booking, setBooking }) {
         <SummaryTitle>Summary</SummaryTitle>
         <SummaryBlock>
           <TitleBlock>
-            <UnitTitle>{booking.name}</UnitTitle>
-            <OrderList>{booking.english_name}</OrderList>
+            <UnitTitle>{booking.location}</UnitTitle>
+            <OrderList>{locationObject.english_name}</OrderList>
           </TitleBlock>
           <UnitPrice>£{totalCostForPassengers}</UnitPrice>
         </SummaryBlock>
@@ -81,12 +93,13 @@ export default function Summary({ booking, setBooking }) {
         <TotalTitle>Total</TotalTitle>
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
-          <Button title={"Checkout"}
-           large={true}
-           action={() => {
-            setBooking({ ...booking, total: totalTrip})
-          }}
-            ></Button>
+          <Button
+            title={"Checkout"}
+            large={true}
+            action={() => {
+              setBooking({ ...booking, total: totalTrip });
+            }}
+          ></Button>
         </ButtonContainer>
       </SummaryPage>
     </>
