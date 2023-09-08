@@ -4,7 +4,7 @@ export default function Button({
   title,
   price="",
   colour="#2f86c5",
-  large = false,
+  large = 0,
   action,
 }) {
   if (colour=="grey" || (typeof colour=="object" && colour[title]=="grey")){

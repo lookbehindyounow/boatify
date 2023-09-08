@@ -82,7 +82,7 @@ export default function Summary({ booking, setBooking }) {
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
           <Button title={"Checkout"}
-           large={true}
+           large={1}
            action={() => {
             setBooking({ ...booking, total: totalTrip})
           }}
