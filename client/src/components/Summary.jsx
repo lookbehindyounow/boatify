@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
-export default function Summary({ booking, setBooking }) {
+export default function Summary({ booking, setBooking, setStep }) {
   useEffect(() => {
     fetchingExtras();
     fetchingLocations();
@@ -11,6 +11,7 @@ export default function Summary({ booking, setBooking }) {
   const [extras, setExtras] = useState([]);
   const [locationObject, setLocationObject] = useState([]);
   console.log(booking);
+  console.log(locationObject);
 
   const fetchingExtras = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
@@ -21,18 +22,29 @@ export default function Summary({ booking, setBooking }) {
   const fetchingLocations = async () => {
     const res = await fetch(`http://localhost:7777/api/locations`);
     const data = await res.json();
-    setLocationObject(data.find(locationFromDb=>locationFromDb.name==booking.location))
+    setLocationObject(
+      data.find((locationFromDb) => locationFromDb.name == booking.location)
+    );
   };
 
   const totalPassengers = (booking) => {
-    if (booking.morning&&booking.afternoon){
-      return locationObject.price_base + locationObject.price_day * booking.passengers
+    if (booking.morning && booking.afternoon) {
+      return (
+        locationObject.price_base +
+        locationObject.price_day * booking.passengers
+      );
     }
-    if (booking.morning){
-      return locationObject.price_base + locationObject.price_morning * booking.passengers
+    if (booking.morning) {
+      return (
+        locationObject.price_base +
+        locationObject.price_morning * booking.passengers
+      );
     }
-    if (booking.afternoon){
-      return locationObject.price_base + locationObject.price_afternoon * booking.passengers
+    if (booking.afternoon) {
+      return (
+        locationObject.price_base +
+        locationObject.price_afternoon * booking.passengers
+      );
     }
   };
 
@@ -59,9 +71,16 @@ export default function Summary({ booking, setBooking }) {
       <SummaryPage>
         <SummaryTitle>Summary</SummaryTitle>
         <SummaryBlock>
+          <h2 style={{color:"#2c7172"}}>{locationObject.name}</h2>
+        </SummaryBlock>
+        <SummaryBlock>
+          <h3 style={{color:"#2c7172"}}>{locationObject.english_name}</h3>
+        </SummaryBlock>
+        <br/>
+        <SummaryBlock>
           <TitleBlock>
-            <UnitTitle>{booking.name}</UnitTitle>
-            <OrderList>{booking.english_name}</OrderList>
+            <UnitTitle>{booking.location}</UnitTitle>
+            <OrderList>{locationObject.english_name}</OrderList>
           </TitleBlock>
           <UnitPrice>£{totalCostForPassengers}</UnitPrice>
         </SummaryBlock>
@@ -70,7 +89,6 @@ export default function Summary({ booking, setBooking }) {
         <SummaryBlock>
           <TitleBlock>
             <UnitTitle>Extras</UnitTitle>
-            {/* {extrasData[0].length ? (extrasData[0].map((item) => <OrderList>{item}</OrderList>)) : null } */}
             {extrasData[1].map((item) => (
               <OrderList>{item}</OrderList>
             ))}
@@ -82,11 +100,12 @@ export default function Summary({ booking, setBooking }) {
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
           <Button title={"Checkout"}
-           large={1}
-           action={() => {
-            setBooking({ ...booking, total: totalTrip})
-          }}
-            ></Button>
+            large={1}
+            action={() => {
+              setBooking({ ...booking, total: totalTrip})
+              setStep(4)
+            }}
+           ></Button>
         </ButtonContainer>
       </SummaryPage>
     </>
