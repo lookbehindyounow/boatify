@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
-export default function Summary({ booking, setBooking }) {
+export default function Summary({ booking, setBooking, setStep }) {
   useEffect(() => {
     fetchingExtras();
     fetchingLocations();
@@ -71,6 +71,13 @@ export default function Summary({ booking, setBooking }) {
       <SummaryPage>
         <SummaryTitle>Summary</SummaryTitle>
         <SummaryBlock>
+          <h2 style={{color:"#2c7172"}}>{locationObject.name}</h2>
+        </SummaryBlock>
+        <SummaryBlock>
+          <h3 style={{color:"#2c7172"}}>{locationObject.english_name}</h3>
+        </SummaryBlock>
+        <br/>
+        <SummaryBlock>
           <TitleBlock>
             <UnitTitle>{booking.location}</UnitTitle>
             <OrderList>{locationObject.english_name}</OrderList>
@@ -82,7 +89,6 @@ export default function Summary({ booking, setBooking }) {
         <SummaryBlock>
           <TitleBlock>
             <UnitTitle>Extras</UnitTitle>
-            {/* {extrasData[0].length ? (extrasData[0].map((item) => <OrderList>{item}</OrderList>)) : null } */}
             {extrasData[1].map((item) => (
               <OrderList>{item}</OrderList>
             ))}
@@ -93,13 +99,13 @@ export default function Summary({ booking, setBooking }) {
         <TotalTitle>Total</TotalTitle>
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
-          <Button
-            title={"Checkout"}
+          <Button title={"Checkout"}
             large={true}
             action={() => {
-              setBooking({ ...booking, total: totalTrip });
+              setBooking({ ...booking, total: totalTrip})
+              setStep(4)
             }}
-          ></Button>
+            ></Button>
         </ButtonContainer>
       </SummaryPage>
     </>

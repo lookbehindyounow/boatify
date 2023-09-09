@@ -83,6 +83,15 @@ function App() {
             />
           </>
         );
+      case 4:
+        return (
+          <>
+            <Checkout
+              booking={booking}
+              setStep={setStep}
+            />
+          </>
+        );
     }
   };
 
