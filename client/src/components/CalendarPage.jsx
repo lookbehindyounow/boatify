@@ -152,11 +152,21 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             />
           </div>
         </CardPageStyle>
+      <div style={{display: "flex", gap: "1rem"}}>
         <Button
-          title="next"
-          colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
-          action={() => setStep(2)}
+          title="back"
+          action={() => {
+              setStep(0)
+              setBooking({})
+              console.log(`after back: ${ booking }`)
+          }}
         />
+      <Button
+      title="next"
+      colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
+      action={() => setStep(2)}
+      />
+      </div>
       </Page>
     </>
   );
