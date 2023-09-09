@@ -18,11 +18,12 @@ const ExtraLi = styled.li`
 `;
 
 export default function Extras({ booking, setBooking, setStep }) {
-  const [extras, setExtras] = useState([]);
+  const [allExtras, setAllExtras] = useState([]);
+  const [bookingExtras, setBookingExtras] = useState([]);
   useEffect(() => {
     fetch("http://localhost:7777/api/extras/")
       .then((res) => res.json())
-      .then((data) => setExtras(data));
+      .then((data) => setAllExtras(data));
     setBooking({ ...booking, passengers: 1 });
   }, []);
 
@@ -70,12 +71,12 @@ export default function Extras({ booking, setBooking, setStep }) {
                 }}
               />
             </ExtraLi>
-            {extras.map((extra, i) => (
+            {allExtras.map((extra, i) => (
               <ExtraLi key={i}>
                 <label htmlFor={extra.name}>{extra.name}</label>
                 <input
                   type="number"
-                  defaultValue={booking[extra.name] ? booking[extra.name] : "0"}
+                  defaultValue={bookingExtras[extra.name] ? bookingExtras[extra.name] : "0"}
                   min="0"
                   max="100"
                   onChange={(e) => {
@@ -86,18 +87,18 @@ export default function Extras({ booking, setBooking, setStep }) {
                     }
                     // the following is to stop "bacon rolls": 0 being added to the booking
                     if (Number(e.target.value)) {
-                      setBooking({
-                        ...booking,
+                      setBookingExtras({
+                        ...bookingExtras,
                         [extra.name]: Number(e.target.value),
                       });
-                      console.log("booking:", {
-                        ...booking,
+                      console.log("bookingExtras:", {
+                        ...bookingExtras,
                         [extra.name]: Number(e.target.value),
                       });
                     } else {
-                      const { [extra.name]: toRemove, ...rest } = booking; // destructuring an object creates variables, which can't have dynamic names, so when destructuring an object with dynamic keys we have to explicitly define variable names, hence [extra.name]:toRemove
-                      setBooking(rest); // then setting booking to everything apart from the extra that was just set to 0
-                      console.log("booking:", rest);
+                      const { [extra.name]: toRemove, ...rest } = bookingExtras; // destructuring an object creates variables, which can't have dynamic names, so when destructuring an object with dynamic keys we have to explicitly define variable names, hence [extra.name]:toRemove
+                      setBookingExtras(rest); // then setting booking to everything apart from the extra that was just set to 0
+                      console.log("bookingExtras:", rest);
                     }
                   }}
                 />
@@ -106,15 +107,18 @@ export default function Extras({ booking, setBooking, setStep }) {
           </ul>
         </CardPageStyle>
         <div style={{display: "flex", gap: "1rem"}}>
-            <Button
-              title="back"
-              colour="#144c74"
-              action={() => {
-                setStep(1);
-                console.log(booking);
-              }}
-            />
-      <Button title="next" action={() => setStep(3)} />
+          <Button
+            title="back"
+            colour="#144c74"
+            action={() => {
+              setStep(1);
+              console.log(booking);
+            }}
+          />
+          <Button title="next" action={() => {
+            setBooking({...booking,extras:bookingExtras})
+            setStep(3)
+          }} />
         </div>
       </Page>
     </>
