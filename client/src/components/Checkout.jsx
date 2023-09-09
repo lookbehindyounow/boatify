@@ -31,7 +31,7 @@ export default function Checkout({booking,setBooking,setStep}) {
 
   const pay = ()=>{
     const {location,passengers,total,morning,afternoon,date,extras} = booking
-    const databaseBooking = {email,location,passengers,price:total,date:`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}
+    const databaseBooking = {email,location,passengers,price:total,date:`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`}
     if (morning){
       databaseBooking.morning=true
     }

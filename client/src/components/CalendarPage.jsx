@@ -44,7 +44,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   }, []);
 
   useEffect(() => {
-    const selected = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`;
+    const selected = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
     const todaysBooking = takenDates.filter((slot) => slot.date == selected)[0];
     if (todaysBooking) {
       todaysBooking.morning &&
