@@ -108,6 +108,7 @@ export default function Extras({ booking, setBooking, setStep }) {
         <div style={{display: "flex", gap: "1rem"}}>
             <Button
               title="back"
+              colour="#144c74"
               action={() => {
                 setStep(1);
                 console.log(booking);

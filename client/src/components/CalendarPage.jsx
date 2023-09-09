@@ -63,8 +63,8 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
       setButtonColours({ Morning: null, Afternoon: null, "Full day": null });
     }
     const { morning, afternoon, ...rest } = booking;
-    setBooking(rest);
-    console.log(rest);
+    setBooking({...rest,date:value});
+    console.log(booking);
   }, [value]);
 
   const tileDisabled = ({ date }) => {
@@ -78,7 +78,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   return (
     <>
       <Page>
-        <h2 style={{ fontSize: "35px", color: "#64b2d4" }}>
+        <h2 style={{ fontSize: "35px", color: "#64b2d4" }} onClick={()=>console.log(booking)}>
           It's time to rig it up
         </h2>
         <br />
@@ -91,7 +91,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
               tileDisabled={tileDisabled}
               onChange={(e) => {
                 setValue(e);
-                setBooking({ ...booking, date: e });
               }}
             />
           </CalendarPageStyle>
@@ -155,6 +154,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
       <div style={{display: "flex", gap: "1rem"}}>
         <Button
           title="back"
+          colour="#144c74"
           action={() => {
               setStep(0)
               setBooking({})

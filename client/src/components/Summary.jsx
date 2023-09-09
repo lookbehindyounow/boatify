@@ -99,6 +99,7 @@ export default function Summary({ booking, setBooking, setStep }) {
         <ButtonContainer>
           <Button
             title="back"
+            colour="#144c74"
             action={() => {
               setStep(2);
               console.log(booking);
@@ -106,7 +107,8 @@ export default function Summary({ booking, setBooking, setStep }) {
           />
           <Button
             title={"Checkout"}
-            large={true}
+            large={1}
+            colour="#2c7172"
             action={() => {
               setBooking({ ...booking, total: totalTrip });
               setStep(4);
