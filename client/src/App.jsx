@@ -21,15 +21,19 @@ function App() {
     const data = await res.json();
     setDestinations(data);
   };
-  
+
   const renderSwitch = (step) => {
     switch (step) {
       default:
         return (
           <>
-            <p style={{paddingTop:"12vh"}}>there's no switch for this case</p>
-            <img style={{width:"80vw",height:"50vw"}}
-              src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"/>
+            <p style={{ paddingTop: "12vh" }}>
+              there's no switch for this case
+            </p>
+            <img
+              style={{ width: "80vw", height: "50vw" }}
+              src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"
+            />
           </>
         );
       case 0:
@@ -40,7 +44,7 @@ function App() {
                 <h2>AHOY!</h2>
                 <h3>All hands on deck.</h3>
                 <br />
-                <Button title="Book Now" colour="white"/>
+                <Button title="Book Now" colour="white" />
               </div>
               <img src="static/boat_img.png" />
             </Hero>
@@ -52,14 +56,21 @@ function App() {
           </>
         );
       case 1:
-        const thisLocation=destinations.filter(destination=>destination.name==booking.location)[0]
+        const thisLocation = destinations.filter(
+          (destination) => destination.name == booking.location
+        )[0];
         return (
           <>
             <CalendarPage
               booking={booking}
               setBooking={setBooking}
               setStep={setStep}
-              prices={[thisLocation.price_morning,thisLocation.price_afternoon,thisLocation.price_day,thisLocation.price_base]}
+              prices={[
+                thisLocation.price_morning,
+                thisLocation.price_afternoon,
+                thisLocation.price_day,
+                thisLocation.price_base,
+              ]}
             />
           </>
         );
@@ -86,10 +97,7 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout
-              booking={booking}
-              setStep={setStep}
-            />
+            <Checkout booking={booking} setStep={setStep} />
           </>
         );
     }
@@ -99,7 +107,7 @@ function App() {
     <>
       <Nav>
         <img src="static/logo.svg" />
-        <h1>Boatify</h1>
+          <h1 style={{margin: "25px"}}>Boatify</h1>
       </Nav>
       {renderSwitch(step)}
     </>
@@ -117,6 +125,7 @@ export default App;
 const Nav = styled.nav`
   display: flex;
   position: fixed;
+  justify-content: space-between;
   align-items: center;
   background-color: #f0f8fa;
   width: 100%;

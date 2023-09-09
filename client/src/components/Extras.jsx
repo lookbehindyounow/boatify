@@ -23,7 +23,7 @@ export default function Extras({ booking, setBooking, setStep }) {
     fetch("http://localhost:7777/api/extras/")
       .then((res) => res.json())
       .then((data) => setExtras(data));
-    setBooking({...booking,passengers:1})
+    setBooking({ ...booking, passengers: 1 });
   }, []);
 
   return (
@@ -105,7 +105,16 @@ export default function Extras({ booking, setBooking, setStep }) {
             ))}
           </ul>
         </CardPageStyle>
-        <Button title="Confirm extras" action={() => setStep(3)} />
+        <div style={{display: "flex", gap: "1rem"}}>
+            <Button
+              title="back"
+              action={() => {
+                setStep(1);
+                console.log(booking);
+              }}
+            />
+      <Button title="next" action={() => setStep(3)} />
+        </div>
       </Page>
     </>
   );

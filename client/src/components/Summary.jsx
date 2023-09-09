@@ -67,20 +67,18 @@ export default function Summary({ booking, setBooking, setStep }) {
   const totalTrip = totalCostForPassengers + extrasData[0];
 
   return (
-    <>
+    <OrderList>
       <SummaryPage>
         <SummaryTitle>Summary</SummaryTitle>
         <SummaryBlock>
-          <h2 style={{color:"#2c7172"}}>{locationObject.name}</h2>
-        </SummaryBlock>
-        <SummaryBlock>
-          <h3 style={{color:"#2c7172"}}>{locationObject.english_name}</h3>
-        </SummaryBlock>
-        <br/>
-        <SummaryBlock>
           <TitleBlock>
-            <UnitTitle>{booking.location}</UnitTitle>
-            <OrderList>{locationObject.english_name}</OrderList>
+            <UnitTitle>{locationObject.name}</UnitTitle>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <h3 style={{ color: "#2c7172" }}>
+                {locationObject.english_name}
+              </h3>
+              <OrderList>{booking.passengers} passengers</OrderList>
+            </div>
           </TitleBlock>
           <UnitPrice>£{totalCostForPassengers}</UnitPrice>
         </SummaryBlock>
@@ -99,16 +97,24 @@ export default function Summary({ booking, setBooking, setStep }) {
         <TotalTitle>Total</TotalTitle>
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
-          <Button title={"Checkout"}
-            large={1}
+          <Button
+            title="back"
             action={() => {
-              setBooking({ ...booking, total: totalTrip})
-              setStep(4)
+              setStep(2);
+              console.log(booking);
             }}
-           ></Button>
+          />
+          <Button
+            title={"Checkout"}
+            large={true}
+            action={() => {
+              setBooking({ ...booking, total: totalTrip });
+              setStep(4);
+            }}
+          ></Button>
         </ButtonContainer>
       </SummaryPage>
-    </>
+    </OrderList>
   );
 }
 
@@ -178,4 +184,5 @@ const ButtonContainer = styled.div`
   height: fit-content;
   display: flex;
   justify-content: center;
+  gap: 2rem;
 `;

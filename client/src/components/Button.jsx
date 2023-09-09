@@ -27,10 +27,10 @@ const ButtonBasic = styled.button`
   background-color: ${props=>props.colour};
   color: ${props=>props.colour=="white"?"#2f86c5":"white"};
   border-style: none;
-  padding: ${(props) => (props.large ? "25px" : "10px")};
+  padding: ${(props) => (props.large ? "15px" : "10px")};
   font-size: ${(props) => (props.large ? "25px" : "18px")};
   font-weight: ${(props) => (props.large ? "800" : "600")};
-  border-radius: ${(props) => (props.large ? "25px" : "20px")};
+  border-radius: ${(props) => (props.large ? "20px" : "20px")};
   width: ${(props) => (props.large ? "100%" : "130px")};
   display: flex;
   ${props=>props.large&&props.price ? "gap: 20px" : "flex-direction: column"};
