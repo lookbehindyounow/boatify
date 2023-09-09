@@ -11,6 +11,7 @@ export default function Summary({ booking, setBooking, setStep }) {
   const [extras, setExtras] = useState([]);
   const [locationObject, setLocationObject] = useState([]);
   console.log(booking);
+  console.log(locationObject);
 
   const fetchingExtras = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
