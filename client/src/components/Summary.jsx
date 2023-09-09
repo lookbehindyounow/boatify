@@ -100,12 +100,12 @@ export default function Summary({ booking, setBooking, setStep }) {
         <TotalCost>£{totalTrip}</TotalCost>
         <ButtonContainer>
           <Button title={"Checkout"}
-            large={true}
+            large={1}
             action={() => {
               setBooking({ ...booking, total: totalTrip})
               setStep(4)
             }}
-            ></Button>
+           ></Button>
         </ButtonContainer>
       </SummaryPage>
     </>
