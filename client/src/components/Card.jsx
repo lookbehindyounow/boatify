@@ -8,6 +8,7 @@ export default function Card({ destination, setStep, setBooking, imageRef }) {
         style={{
           backgroundImage: `url(${imageRef})`,
           backgroundSize: `cover`,
+          opacity: 0.88,
         }}
       >
         <Title>{destination.name}</Title>
@@ -22,8 +23,8 @@ export default function Card({ destination, setStep, setBooking, imageRef }) {
           <p
             style={{
               color: `#ffffff`,
-              textShadow: `-1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black,
-    -1px -1px 0 black`,
+              textShadow: `-1px 1px 0 #144c74, 1px 1px 0 #144c74, 1px -1px 0 #144c74,
+    -1px -1px 0 #144c74`,
             }}
           >
             from
@@ -39,7 +40,7 @@ const CardBlock = styled.div`
   width: 95vw;
   background-color: #f0f8fa;
   border-radius: 20px;
-  border: 2px solid #64b2d4;
+  box-shadow: 3px 3px 6px #64b2d4;
   padding-top: 10px;
   padding-left: 20px;
   height: 25vh;
@@ -56,6 +57,7 @@ const Title = styled.h2`
   color: #144c74;
   background-color: #f0f8fa;
   border-radius: 10px;
+  opacity: 0.8;
   border: 2px solid #64b2d4;
   padding: 3px;
   display: flex;
@@ -71,7 +73,10 @@ const BottomBlock = styled.div`
 `;
 const Price = styled.h3`
   font-size: 55px;
-  color: #2f86c5;
-  text-shadow: -1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black,
-    -1px -1px 0 black;
+  opacity: 0.96;
+  color: #0c304a;
+  text-shadow: -0.8px 0.8px 0 rgba(240, 248, 250, 0.7),
+    -0.8px 0.8px 0 rgba(240, 248, 250, 0.7),
+    -0.8px 0.8px 0 rgba(240, 248, 250, 0.7),
+    -0.8px 0.8px 0 rgba(240, 248, 250, 0.7);
 `;
