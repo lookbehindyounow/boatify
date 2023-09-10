@@ -3,28 +3,7 @@ import Button from "./Button";
 import { useEffect, useState } from "react";
 
 export default function Card({ destination, setStep, setBooking, imageRef }) {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const breakpoint = 750;
-  useEffect(() => {
-    addEventListener("resize", () => setWindowWidth(window.innerWidth));
-  }, []);
-  return windowWidth < breakpoint ? (
-    <MobileCard
-      destination={destination}
-      setStep={setStep}
-      setBooking={setBooking}
-      imageRef={imageRef}
-    />
-  ) : (
-    <DesktopCard
-      destination={destination}
-      setBooking={setBooking}
-      setStep={setStep}
-      imageRef={imageRef}
-    />
-  );
-}
-const MobileCard = ({ destination, setStep, setBooking, imageRef }) => {
+
   return (
     <>
       <CardBlock
@@ -33,43 +12,6 @@ const MobileCard = ({ destination, setStep, setBooking, imageRef }) => {
           backgroundSize: `cover`,
           backgroundPosition: `center bottom 35%`,
           opacity: 0.88,
-        }}
-      >
-        <Title>{destination.name}</Title>
-        <BottomBlock>
-          <Button
-            title={"Book Now"}
-            action={() => {
-              setBooking({ location: destination.name });
-              setStep(1);
-            }}
-          ></Button>
-          <p
-            style={{
-              color: `#ffffff`,
-              textShadow: `-1px 1px 0 #144c74, 1px 1px 0 #144c74, 1px -1px 0 #144c74,
-    -1px -1px 0 #144c74`,
-            }}
-          >
-            from
-          </p>
-          <Price>£{destination.price_morning}</Price>
-        </BottomBlock>
-      </CardBlock>
-    </>
-  );
-};
-
-const DesktopCard = ({ destination, setStep, setBooking, imageRef }) => {
-  return (
-    <>
-      <CardBlock
-        style={{
-          backgroundImage: `url(${imageRef})`,
-          backgroundSize: `100%`,
-          opacity: 0.88,
-          objectFit: `cover`,
-          backgroundPosition: `center bottom 35%`,
         }}
       >
         <Title>{destination.name}</Title>
@@ -111,6 +53,10 @@ const CardBlock = styled.div`
   padding-bottom: 15px;
   padding-right: 20px;
   align-items: center;
+  @media (min-width: 800px) {
+    width: 500px;
+
+  }
 `;
 
 const Title = styled.h2`

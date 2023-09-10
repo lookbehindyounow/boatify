@@ -130,30 +130,59 @@ function App() {
             <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
             <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
           </>
-        )
+        );
     }
   };
 
   return (
     <>
-      <Nav>
-        <img src="static/logo.svg" />
-        <h1>Boatify</h1>
-        {step == 0 ? <img style={{position: "absolute", marginLeft: "calc(100vw - 10.2vh", borderRadius: "50%"}} src={user?"static/account_icon.png":"static/register_icon.png"} onClick={() => setStep(user?-2:-1)}/>
-        : null}
-      </Nav>
-      {renderSwitch(step)}
+      <Desktop>
+        <Container>
+          <Nav>
+            <img src="static/logo.svg" />
+            <h1>Boatify</h1>
+            {step == 0 ? (
+              <img
+                style={{ position: "absolute", marginLeft: "78%", ...(window.innerWidth >= 800 && { marginLeft: "92%" })}}
+                // style={{position: "absolute", marginLeft: "calc(100vw - 10.2vh", borderRadius: "50%"}}
+                src={user?"static/account_icon.png":"static/register_icon.png"}
+                onClick={() => setStep(user?-2:-1)}
+              />
+            ) : null}
+          </Nav>
+          {renderSwitch(step)}
+          <Footer>
+            <div style={{width: "50%"}}><h3 style={{color: "#f0f8fa", fontSize: "20px"}}>Making memories, one wave at a time.</h3></div>
+            <img style={{width: "70px"}} src="static/logo-inverted.png" />
+          </Footer>
+        </Container>
+      </Desktop>
     </>
   );
 }
 
 export default App;
 
-//2f86c5 main text
-//64b2d4 hero/secondary text
-//f0f8fa bg off white
-//2c7172 uhhh green
-//144c74 higher contrast main
+const Desktop = styled.div`
+  @media (min-width: 800px) {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+const Container = styled.div`
+  @media (min-width: 800px) {
+    width: 1000px;
+    heigth: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 const Nav = styled.nav`
             display: flex;
@@ -161,16 +190,19 @@ const Nav = styled.nav`
             align-items: center;
             background-color: #f0f8fa;
             width: 100%;
-            height: 12vh; // this
+            height: 12vh; 
             img {
               border-radius: 50%;
             height: 70%; // times (100% - this)/2
             margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
-  }
+            }
             h1 {
               color: #144c74;
             font-size: 40px;
-  }
+            };
+            @media (min-width: 800px) { 
+              width: 1000px
+            }
             `;
 
 const Hero = styled.div`
@@ -193,4 +225,20 @@ const Hero = styled.div`
             img {
               height: 40%;
   }
+            @media (min-width: 800px) {
+              width: 100%
+  }
             `;
+
+const Footer = styled.div`
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  background-color: #144c74;
+justify-content: space-around;
+  width: 100%;
+  height: 12vh;
+  @media (min-width: 800px) {
+    width: 1000px;
+  }
+`;

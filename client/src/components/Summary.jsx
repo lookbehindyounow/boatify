@@ -52,9 +52,14 @@ export default function Summary({ booking, setBooking, setStep }) {
     let total = 0;
     let itemsNames = [];
     for (const [key, value] of Object.entries(booking.extras)) {
-      if (extras.length){
-        console.log(extras,key,extras.find(extra=>extra.name==key))
-        const extraPrice = extras.find(extra=>extra.name==key).price * value
+      if (extras.length) {
+        console.log(
+          extras,
+          key,
+          extras.find((extra) => extra.name == key)
+        );
+        const extraPrice =
+          extras.find((extra) => extra.name == key).price * value;
         total += extraPrice;
         itemsNames.push(`${value} x ${key} - £${extraPrice}`);
       }
@@ -78,7 +83,11 @@ export default function Summary({ booking, setBooking, setStep }) {
                 {locationObject.english_name}
               </h3>
               <OrderList>base price - £{locationObject.price_base}</OrderList>
-              <OrderList>{booking.passengers} passenger{booking.passengers==1?"":"s"} - £{totalCostForPassengers-locationObject.price_base}</OrderList>
+              <OrderList>
+                {booking.passengers} passenger
+                {booking.passengers == 1 ? "" : "s"} - £
+                {totalCostForPassengers - locationObject.price_base}
+              </OrderList>
             </div>
           </TitleBlock>
           <UnitPrice>£{totalCostForPassengers}</UnitPrice>
@@ -126,6 +135,9 @@ const SummaryPage = styled.div`
   flex-direction: column;
   height: 100vh;
   align-items: center;
+  @media (min-width: 800px){ 
+    max-width: 1000px;
+  }
 `;
 
 const SummaryTitle = styled.h1`
@@ -142,6 +154,10 @@ const SummaryBlock = styled.div`
   width: 95vw;
   justify-content: space-between;
   align-items: end;
+  @media (min-width: 800px){ 
+    max-width: 1000px;
+  }
+
 `;
 const TitleBlock = styled.div`
   display: flex;
@@ -159,6 +175,9 @@ const Underline = styled.div`
   margin-top: 5px;
   align-self: center;
   margin-bottom: 25px;
+  @media (min-width: 800px){ 
+    max-width: 1000px;
+  }
 `;
 
 const UnitTitle = styled.h3`
@@ -188,3 +207,4 @@ const ButtonContainer = styled.div`
   justify-content: center;
   gap: 2rem;
 `;
+
