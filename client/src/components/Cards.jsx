@@ -30,4 +30,10 @@ const CardsView = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 10px;
+
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+  }
 `;

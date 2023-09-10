@@ -101,6 +101,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
               marginTop: "5px",
               gap: "5px",
               justifyContent: "space-between",
+              ...(window.innerWidth >= 800 && { width: "70%" })
             }}
           >
             <Button
@@ -179,4 +180,7 @@ const CalendarPageStyle = styled.section`
   align-items: center;
   width: 100%;
   justify-content: space-around;
+  @media (min-width: 800px) { 
+    width: 800px
+  }
 `;
