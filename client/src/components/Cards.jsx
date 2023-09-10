@@ -1,7 +1,7 @@
 import Card from "./Card";
 import styled from "styled-components";
-import pollenca from "../images/pollenca-bay.jfif";
-import calaSanVicente from "../images/cala-san-vicente.jfif";
+import pollenca from "../images/s-illot.jfif";
+import calaSanVicente from "../images/cala-sant-vicenc.jfif";
 import calaPi from "../images/cala-pi-de-la-posada.jfif";
 
 function Cards({ destinations, setStep, setBooking }) {

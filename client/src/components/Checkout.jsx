@@ -6,8 +6,8 @@ import {
   PayPalButtons
 } from "@paypal/react-paypal-js";
 
-export default function Checkout({booking,setBooking,setStep}) {
-  const [email,setEmail] = useState("")
+export default function Checkout({booking,setBooking,setStep,user}) {
+  const [email,setEmail] = useState(user?user.email:"")
   const [emailValid,setEmailValid] = useState(false)
 
   useEffect(()=>{
@@ -37,6 +37,9 @@ export default function Checkout({booking,setBooking,setStep}) {
     }
     if (afternoon){
       databaseBooking.afternoon=true
+    }
+    if (user){
+      databaseBooking.userId=user._id
     }
     const bookingExtras=Object.keys(extras).map(key=>{return {name:key,quantity:extras[key]}})
     if (bookingExtras.length){
