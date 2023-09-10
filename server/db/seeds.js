@@ -94,3 +94,16 @@ db.orders.insertMany([
     }]
   }
 ])
+
+db.users.insertMany([
+  {
+    username: "Elon Musk",
+    password: "ibuyboats34*",
+    email: "twitter@x.tesla"
+  },
+  {
+    username: "Jeff Bezos",
+    password: "elonhasnoboats4£",
+    email: "amazon@rocket.pr"
+  }
+])

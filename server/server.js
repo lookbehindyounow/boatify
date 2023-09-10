@@ -21,6 +21,9 @@ MongoClient.connect("mongodb://127.0.0.1:27017", { useUnifiedTopology: true })
     const ordersCollection = db.collection("orders");
     const ordersRouter = createOrderRouter(ordersCollection);
     app.use("/api/orders", ordersRouter);
+    const usersCollection = db.collection("users");
+    const userRouter = createOrderRouter(usersCollection);
+    app.use("/api/users", userRouter);
   })
   .catch(console.err);
 

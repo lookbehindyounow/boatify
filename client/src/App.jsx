@@ -6,6 +6,7 @@ import CalendarPage from "./components/CalendarPage";
 import Summary from "./components/Summary";
 import Extras from "./components/Extras";
 import Checkout from "./components/Checkout";
+import Register from "./components/Register";
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,12 @@ function App() {
             />
           </>
         );
+      case -1:
+        return (
+          <>
+            <Register setStep={setStep} />
+          </>
+        )
       case 0:
         return (
           <>
@@ -113,7 +120,8 @@ function App() {
     <>
       <Nav>
         <img src="static/logo.svg" />
-          <h1>Boatify</h1>
+        <h1>Boatify</h1>
+        {step == 0 ? <img style={{position: "absolute", marginLeft: "78%"}} src="static/register_icon.png" onClick={() => setStep(-1)}/> : null}
       </Nav>
       {renderSwitch(step)}
     </>
@@ -129,42 +137,41 @@ export default App;
 //144c74 higher contrast main
 
 const Nav = styled.nav`
-  display: flex;
-  position: fixed;
-  /* justify-content: space-between; */
-  align-items: center;
-  background-color: #f0f8fa;
-  width: 100%;
-  height: 12vh; // this
-  img {
-    border-radius: 50%;
-    height: 70%; // times (100% - this)/2
-    margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
+            display: flex;
+            position: fixed;
+            align-items: center;
+            background-color: #f0f8fa;
+            width: 100%;
+            height: 12vh; // this
+            img {
+              border - radius: 50%;
+            height: 70%; // times (100% - this)/2
+            margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
   }
-  h1 {
-    color: #144c74;
-    font-size: 40px;
+            h1 {
+              color: #144c74;
+            font-size: 40px;
   }
-`;
+            `;
 
 const Hero = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #64b2d4;
-  height: 50vh;
-  padding-top: 12vh;
-  margin-bottom: 10px;
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    h2 {
-      font-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #64b2d4;
+            height: 50vh;
+            padding-top: 12vh;
+            margin-bottom: 10px;
+            div {
+              display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            h2 {
+              font - size: 50px;
     }
   }
-  img {
-    height: 40%;
+            img {
+              height: 40%;
   }
-`;
+            `;

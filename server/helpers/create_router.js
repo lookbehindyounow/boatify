@@ -17,6 +17,13 @@ const createRouter = function (collection) {
       });
   });
 
+  router.post("/", (req, res) => {
+    const newUser = req.body;
+    console.log(newUser);
+    collection.insertOne(newUser).then((docs) => {
+      res.json(docs.ops[0]);
+    });
+  });
 
   return router;
 };
