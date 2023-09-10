@@ -6,6 +6,7 @@ import CalendarPage from "./components/CalendarPage";
 import Summary from "./components/Summary";
 import Extras from "./components/Extras";
 import Checkout from "./components/Checkout";
+import Register from "./components/Register";
 
 function App() {
   useEffect(() => {
@@ -21,15 +22,19 @@ function App() {
     const data = await res.json();
     setDestinations(data);
   };
-  
+
   const renderSwitch = (step) => {
     switch (step) {
       default:
         return (
           <>
-            <p style={{paddingTop:"12vh"}}>there's no switch for this case</p>
-            <img style={{width:"80vw",height:"50vw"}}
-              src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"/>
+            <p style={{ paddingTop: "12vh" }}>
+              there's no switch for this case
+            </p>
+            <img
+              style={{ width: "80vw", height: "50vw" }}
+              src="https://www.shutterstock.com/shutterstock/photos/2057698184/display_1500/stock-vector-face-palm-emoji-sad-emoticon-with-facepalm-gesture-shaking-my-head-d-stylized-vector-icon-2057698184.jpg"
+            />
           </>
         );
       case 0:
@@ -40,7 +45,7 @@ function App() {
                 <h2>AHOY!</h2>
                 <h3>All hands on deck.</h3>
                 <br />
-                <Button title="Book Now" colour="white"/>
+                <Button title="Book Now" colour="white" />
               </div>
               <img src="static/boat_img.png" />
             </Hero>
@@ -52,14 +57,21 @@ function App() {
           </>
         );
       case 1:
-        const thisLocation=destinations.filter(destination=>destination.name==booking.location)[0]
+        const thisLocation = destinations.filter(
+          (destination) => destination.name == booking.location
+        )[0];
         return (
           <>
             <CalendarPage
               booking={booking}
               setBooking={setBooking}
               setStep={setStep}
-              prices={[thisLocation.price_morning,thisLocation.price_afternoon,thisLocation.price_day,thisLocation.price_base]}
+              prices={[
+                thisLocation.price_morning,
+                thisLocation.price_afternoon,
+                thisLocation.price_day,
+                thisLocation.price_base,
+              ]}
             />
           </>
         );
@@ -86,10 +98,13 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout
-              booking={booking}
-              setStep={setStep}
-            />
+            <Checkout booking={booking} setStep={setStep} />
+          </>
+        );
+      case 5:
+        return (
+          <>
+            <Register setStep={setStep} />
           </>
         );
     }
@@ -100,6 +115,7 @@ function App() {
       <Nav>
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
+        <img src="static/register_icon.png" />
       </Nav>
       {renderSwitch(step)}
     </>
@@ -115,41 +131,42 @@ export default App;
 //144c74 higher contrast main
 
 const Nav = styled.nav`
-  display: flex;
-  position: fixed;
-  align-items: center;
-  background-color: #f0f8fa;
-  width: 100%;
-  height: 12vh; // this
-  img {
-    border-radius: 50%;
-    height: 70%; // times (100% - this)/2
-    margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
+            display: flex;
+            position: fixed;
+          justify-content: center;
+            align-items: center;
+            background-color: #f0f8fa;
+            width: 100%;
+            height: 12vh; // this
+            img {
+              border - radius: 50%;
+            height: 70%; // times (100% - this)/2
+            margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
   }
-  h1 {
-    color: #144c74;
-    font-size: 40px;
+            h1 {
+              color: #144c74;
+            font-size: 40px;
   }
-`;
+            `;
 
 const Hero = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #64b2d4;
-  height: 50vh;
-  padding-top: 12vh;
-  margin-bottom: 10px;
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    h2 {
-      font-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #64b2d4;
+            height: 50vh;
+            padding-top: 12vh;
+            margin-bottom: 10px;
+            div {
+              display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            h2 {
+              font - size: 50px;
     }
   }
-  img {
-    height: 40%;
+            img {
+              height: 40%;
   }
-`;
+            `;
