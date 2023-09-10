@@ -37,6 +37,12 @@ function App() {
             />
           </>
         );
+      case -1:
+        return (
+          <>
+            <Register setStep={setStep} />
+          </>
+        )
       case 0:
         return (
           <>
@@ -98,15 +104,15 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout booking={booking} setStep={setStep} />
+            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} />
           </>
         );
       case 5:
         return (
           <>
-            <Register setStep={setStep} />
+            <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
           </>
-        );
+        )
     }
   };
 
@@ -115,7 +121,7 @@ function App() {
       <Nav>
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
-        {step == 0 ? <img style={{position: "absolute", marginLeft: "78%"}} src="static/register_icon.png" onClick={() => setStep(5)}/> : null}
+        {step == 0 ? <img style={{position: "absolute", marginLeft: "78%"}} src="static/register_icon.png" onClick={() => setStep(-1)}/> : null}
       </Nav>
       {renderSwitch(step)}
     </>

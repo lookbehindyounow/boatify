@@ -44,7 +44,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   }, []);
 
   useEffect(() => {
-    const selected = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`;
+    const selected = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
     const todaysBooking = takenDates.filter((slot) => slot.date == selected)[0];
     if (todaysBooking) {
       todaysBooking.morning &&
@@ -63,8 +63,8 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
       setButtonColours({ Morning: null, Afternoon: null, "Full day": null });
     }
     const { morning, afternoon, ...rest } = booking;
-    setBooking(rest);
-    console.log(rest);
+    setBooking({...rest,date:value});
+    console.log(booking);
   }, [value]);
 
   const tileDisabled = ({ date }) => {
@@ -78,7 +78,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   return (
     <>
       <Page>
-        <h2 style={{ fontSize: "35px", color: "#64b2d4" }}>
+        <h2 style={{ fontSize: "35px", color: "#64b2d4" }} onClick={()=>console.log(booking)}>
           It's time to rig it up
         </h2>
         <br />
@@ -91,7 +91,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
               tileDisabled={tileDisabled}
               onChange={(e) => {
                 setValue(e);
-                setBooking({ ...booking, date: e });
               }}
             />
           </CalendarPageStyle>
@@ -152,11 +151,22 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             />
           </div>
         </CardPageStyle>
+      <div style={{display: "flex", gap: "1rem"}}>
         <Button
-          title="next"
-          colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
-          action={() => setStep(2)}
+          title="back"
+          colour="#144c74"
+          action={() => {
+              setStep(0)
+              setBooking({})
+              console.log(`after back: ${ booking }`)
+          }}
         />
+      <Button
+      title="next"
+      colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
+      action={() => setStep(2)}
+      />
+      </div>
       </Page>
     </>
   );
