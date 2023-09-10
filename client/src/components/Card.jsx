@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Card({ destination, setStep, setBooking, imageRef }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const breakpoint = 500;
+  const breakpoint = 750;
   useEffect(() => {
     addEventListener("resize", () => setWindowWidth(window.innerWidth));
   }, []);
@@ -31,6 +31,7 @@ const MobileCard = ({ destination, setStep, setBooking, imageRef }) => {
         style={{
           backgroundImage: `url(${imageRef})`,
           backgroundSize: `cover`,
+          backgroundPosition: `center bottom 35%`,
           opacity: 0.88,
         }}
       >
