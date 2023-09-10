@@ -115,7 +115,7 @@ function App() {
       <Nav>
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
-        <img src="static/register_icon.png" />
+        {step == 0 ? <img style={{position: "absolute", marginLeft: "78%"}} src="static/register_icon.png" onClick={() => setStep(5)}/> : null}
       </Nav>
       {renderSwitch(step)}
     </>
@@ -133,7 +133,6 @@ export default App;
 const Nav = styled.nav`
             display: flex;
             position: fixed;
-          justify-content: center;
             align-items: center;
             background-color: #f0f8fa;
             width: 100%;
