@@ -7,6 +7,8 @@ import Summary from "./components/Summary";
 import Extras from "./components/Extras";
 import Checkout from "./components/Checkout";
 import Register from "./components/Register";
+import Account from "./components/Account";
+import Order from "./components/Order";
 
 function App() {
   useEffect(() => {
@@ -16,6 +18,8 @@ function App() {
   const [destinations, setDestinations] = useState([]);
   const [booking, setBooking] = useState({});
   const [step, setStep] = useState(0);
+  const [user, setUser] = useState(false);
+  const [order, setOrder] = useState(0);
 
   const fetching = async () => {
     const res = await fetch("http://localhost:7777/api/locations");
@@ -40,9 +44,22 @@ function App() {
       case -1:
         return (
           <>
-            <Register setStep={setStep} />
+            <Register setStep={setStep} setUser={setUser}/>
           </>
         )
+      case -2:
+        return (
+          <>
+            <Account setStep={setStep} user={user} setUser={setUser} setOrder={setOrder}/>
+          </>
+        )
+      case -3:
+        return (
+          <>
+            <Order setStep={setStep} order={order}/>
+          </>
+        )
+
       case 0:
         return (
           <>
@@ -104,13 +121,14 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} />
+            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} user={user}/>
           </>
         );
       case 5:
         return (
           <>
             <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
+            <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
           </>
         )
     }
@@ -121,7 +139,8 @@ function App() {
       <Nav>
         <img src="static/logo.svg" />
         <h1>Boatify</h1>
-        {step == 0 ? <img style={{position: "absolute", marginLeft: "78%"}} src="static/register_icon.png" onClick={() => setStep(-1)}/> : null}
+        {step == 0 ? <img style={{position: "absolute", marginLeft: "calc(100vw - 10.2vh", borderRadius: "50%"}} src={user?"static/account_icon.png":"static/register_icon.png"} onClick={() => setStep(user?-2:-1)}/>
+        : null}
       </Nav>
       {renderSwitch(step)}
     </>
@@ -144,7 +163,7 @@ const Nav = styled.nav`
             width: 100%;
             height: 12vh; // this
             img {
-              border - radius: 50%;
+              border-radius: 50%;
             height: 70%; // times (100% - this)/2
             margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
   }
@@ -168,7 +187,7 @@ const Hero = styled.div`
             align-items: center;
             color: white;
             h2 {
-              font - size: 50px;
+              font-size: 50px;
     }
   }
             img {
