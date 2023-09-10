@@ -51,13 +51,13 @@ export default function Summary({ booking, setBooking, setStep }) {
   const totalExtras = (booking) => {
     let total = 0;
     let itemsNames = [];
-    for (const [key, value] of Object.entries(booking)) {
-      extras.map((extra) => {
-        if (extra.name == key) {
-          total += extra.price * value;
-          itemsNames.push([String(`${value} x `), key]);
-        }
-      });
+    for (const [key, value] of Object.entries(booking.extras)) {
+      if (extras.length){
+        console.log(extras,key,extras.find(extra=>extra.name==key))
+        const extraPrice = extras.find(extra=>extra.name==key).price * value
+        total += extraPrice;
+        itemsNames.push(`${value} x ${key} - £${extraPrice}`);
+      }
     }
     return [total, itemsNames];
   };
@@ -77,7 +77,8 @@ export default function Summary({ booking, setBooking, setStep }) {
               <h3 style={{ color: "#2c7172" }}>
                 {locationObject.english_name}
               </h3>
-              <OrderList>{booking.passengers} passengers</OrderList>
+              <OrderList>base price - £{locationObject.price_base}</OrderList>
+              <OrderList>{booking.passengers} passenger{booking.passengers==1?"":"s"} - £{totalCostForPassengers-locationObject.price_base}</OrderList>
             </div>
           </TitleBlock>
           <UnitPrice>£{totalCostForPassengers}</UnitPrice>
@@ -99,6 +100,7 @@ export default function Summary({ booking, setBooking, setStep }) {
         <ButtonContainer>
           <Button
             title="back"
+            colour="#144c74"
             action={() => {
               setStep(2);
               console.log(booking);
@@ -106,7 +108,7 @@ export default function Summary({ booking, setBooking, setStep }) {
           />
           <Button
             title={"Checkout"}
-            large={true}
+            colour="#2c7172"
             action={() => {
               setBooking({ ...booking, total: totalTrip });
               setStep(4);

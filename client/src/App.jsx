@@ -97,9 +97,15 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout booking={booking} setStep={setStep} />
+            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} />
           </>
         );
+      case 5:
+        return (
+          <>
+            <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
+          </>
+        )
     }
   };
 
@@ -107,7 +113,7 @@ function App() {
     <>
       <Nav>
         <img src="static/logo.svg" />
-          <h1 style={{margin: "25px"}}>Boatify</h1>
+          <h1>Boatify</h1>
       </Nav>
       {renderSwitch(step)}
     </>
@@ -125,7 +131,7 @@ export default App;
 const Nav = styled.nav`
   display: flex;
   position: fixed;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   background-color: #f0f8fa;
   width: 100%;
