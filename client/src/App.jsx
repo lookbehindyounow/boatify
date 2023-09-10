@@ -8,6 +8,7 @@ import Extras from "./components/Extras";
 import Checkout from "./components/Checkout";
 import Register from "./components/Register";
 import Account from "./components/Account";
+import Order from "./components/Order";
 
 function App() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
   const [booking, setBooking] = useState({});
   const [step, setStep] = useState(0);
   const [user, setUser] = useState(false);
+  const [order, setOrder] = useState(0);
 
   const fetching = async () => {
     const res = await fetch("http://localhost:7777/api/locations");
@@ -48,9 +50,16 @@ function App() {
       case -2:
         return (
           <>
-            <Account setStep={setStep} user={user} setUser={setUser}/>
+            <Account setStep={setStep} user={user} setUser={setUser} setOrder={setOrder}/>
           </>
         )
+      case -3:
+        return (
+          <>
+            <Order setStep={setStep} order={order}/>
+          </>
+        )
+
       case 0:
         return (
           <>
@@ -112,13 +121,14 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} />
+            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} user={user}/>
           </>
         );
       case 5:
         return (
           <>
             <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
+            <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
           </>
         )
     }

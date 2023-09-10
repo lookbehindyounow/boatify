@@ -3,15 +3,20 @@ import Page from "./Page"
 import Button from "./Button"
 import { useEffect, useState } from "react"
 
-export default function Account({setStep, user, setUser}) {
+export default function Account({setStep, user, setUser, setOrder}) {
   const [myOrders, setMyOrders] = useState([])
 
   useEffect(()=>{getMyOrders()},[])
 
   const getMyOrders = async () => {
-    const res=await fetch("http://localhost:7777/api/orders")
-    const orders=await res.json()
-    // setMyOrders([orders.filter(order=>order.email==user.email||order.userId==user._id)])
+    let res=await fetch("http://localhost:7777/api/orders")
+    let data=await res.json()
+    const orders=data.filter(order=>order.email==user.email||order.userId==user._id)
+    // if we put imageRef into locations collection in db
+    // res=await fetch("http://localhost:7777/api/locations")
+    // data=await res.json()
+    // orders.forEach(order=>order.imageRef=data.find(location=>order.location==location.name).imageRef)
+    orders.forEach(order=>order.imageRef=order.location.split(/ |'/).join("-").toLowerCase())
     setMyOrders(orders)
   }
 
@@ -23,8 +28,13 @@ export default function Account({setStep, user, setUser}) {
         <h2>Email: {user.email}</h2>
         <p>User id: {user._id}</p>
         <br/>
-        {myOrders.map((order,i)=><div key={i} style={{padding: "10px", border: "solid #144c74", borderRadius: "10px"}}>
-          {order.location}
+        {myOrders.map((order,i)=><div key={i} onClick={()=>{setOrder(order);setStep(-3)}} style={{
+          padding: "10px", marginBottom: "10px", border: "solid #144c74", borderRadius: "10px", color: "white", width: "90%",
+          backgroundImage: `url(./src/images/${order.imageRef}.jfif)`, backgroundSize: "cover", backgroundPosition: "center bottom 40%"
+        }}>
+          <h3>{order.location}</h3>
+          <p>Order id: {order._id}</p>
+          <p>{order.date}</p>
         </div>)}
         <Button title="Log out" action={()=>{
           setUser(false)
