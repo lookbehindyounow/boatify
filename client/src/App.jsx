@@ -46,21 +46,26 @@ function App() {
       case -1:
         return (
           <>
-            <Register setStep={setStep} setUser={setUser}/>
+            <Register setStep={setStep} setUser={setUser} />
           </>
-        )
+        );
       case -2:
         return (
           <>
-            <Account setStep={setStep} user={user} setUser={setUser} setOrder={setOrder}/>
+            <Account
+              setStep={setStep}
+              user={user}
+              setUser={setUser}
+              setOrder={setOrder}
+            />
           </>
-        )
+        );
       case -3:
         return (
           <>
-            <Order setStep={setStep} order={order}/>
+            <Order setStep={setStep} order={order} />
           </>
-        )
+        );
 
       case 0:
         return (
@@ -71,7 +76,15 @@ function App() {
                   <h2>AHOY!</h2>
                   <h3>All hands on deck.</h3>
                   <br />
-                  <Button title="Book Now" colour="white" action={()=>document.getElementById("bottomOfDaPage").scrollIntoView({ behavior: "smooth" })}/>
+                  <Button
+                    title="Book Now"
+                    colour="white"
+                    action={() =>
+                      document
+                        .getElementById("bottomOfDaPage")
+                        .scrollIntoView({ behavior: "smooth" })
+                    }
+                  />
                 </div2>
                 <img src="static/boat_img.png" />
               </div>
@@ -126,7 +139,12 @@ function App() {
       case 4:
         return (
           <>
-            <Checkout booking={booking} setBooking={setBooking} setStep={setStep} user={user}/>
+            <Checkout
+              booking={booking}
+              setBooking={setBooking}
+              setStep={setStep}
+              user={user}
+            />
           </>
         );
       case 5:
@@ -134,10 +152,14 @@ function App() {
           <>
             <Page>
               <CardPageStyle>
-                <h2 style={{color: "#2f86c5"}}>Thank you for your booking!</h2>
-                <h2 style={{color: "#2f86c5"}}>Your order id is {booking._id}</h2>
+                <h2 style={{ color: "#2f86c5" }}>
+                  Thank you for your booking!
+                </h2>
+                <h2 style={{ color: "#2f86c5" }}>
+                  Your order id is {booking._id}
+                </h2>
               </CardPageStyle>
-              <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
+              <Button title="Home" colour="#2c7172" action={() => setStep(0)} />
             </Page>
           </>
         );
@@ -149,13 +171,15 @@ function App() {
       <Nav>
         <div>
           <div2>
-            <img src="static/logo.svg" />
+            <img src="static/logo.svg" onClick={() => setStep(0)} />
             <h1>Boatify</h1>
           </div2>
           {step == 0 ? (
             <img
-              src={user?"static/account_icon.png":"static/register_icon.png"}
-              onClick={() => setStep(user?-2:-1)}
+              src={
+                user ? "static/account_icon.png" : "static/register_icon.png"
+              }
+              onClick={() => setStep(user ? -2 : -1)}
             />
           ) : null}
         </div>
@@ -163,7 +187,9 @@ function App() {
       <div>{renderSwitch(step)}</div>
       <Footer>
         <div>
-          <h3 style={{color: "#f0f8fa", fontSize: "20px"}}>Making memories, one wave at a time.</h3>
+          <h3 style={{ color: "#f0f8fa", fontSize: "20px" }}>
+            Making memories, one wave at a time.
+          </h3>
           <img src="static/logo-inverted.png" />
         </div>
       </Footer>
@@ -174,7 +200,7 @@ function App() {
 export default App;
 
 const Nav = styled.nav`
-  height: 12vh; 
+  height: 12vh;
   background-color: #f0f8fa;
   z-index: 1;
   position: fixed;
@@ -191,7 +217,7 @@ const Nav = styled.nav`
       h1 {
         color: #144c74;
         font-size: 40px;
-      };
+      }
     }
     img {
       height: 8.4vh;
@@ -242,7 +268,7 @@ const Hero = styled.div`
         }
       }
       img {
-        height: 30vh
+        height: 30vh;
       }
     }
   }
