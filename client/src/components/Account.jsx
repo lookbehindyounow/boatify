@@ -11,7 +11,8 @@ export default function Account({setStep, user, setUser, setOrder}) {
   const getMyOrders = async () => {
     let res=await fetch("http://localhost:7777/api/orders")
     let data=await res.json()
-    const orders=data.filter(order=>order.email==user.email||order.userId==user._id)
+    const orders=data.filter(order=>(order.email&&order.email==user.email)||(order.userId&&order.userId==user._id))
+    console.log(orders,user)
     // if we put imageRef into locations collection in db
     // res=await fetch("http://localhost:7777/api/locations")
     // data=await res.json()
