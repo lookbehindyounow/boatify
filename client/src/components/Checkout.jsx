@@ -103,4 +103,5 @@ export default function Checkout({ booking, setBooking, setStep, user }) {
       </Page>
     </>
   );
+
 }
