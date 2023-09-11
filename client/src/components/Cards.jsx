@@ -27,13 +27,13 @@ export default Cards;
 
 const CardsView = styled.div`
   display: flex;
-  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: calc(12vh + 20px);
   flex-direction: column;
+  align-items: center;
   gap: 10px;
-
-  @media (min-width: 800px) {
-    display: flex;
+  @media (min-width: 1000px) {
     flex-direction: row;
-    max-width: 1000px;
   }
 `;

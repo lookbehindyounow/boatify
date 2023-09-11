@@ -21,7 +21,7 @@ export default function Register({ setStep, setUser }) {
     const attemptedUser=data.find(user=>user.username==username && user.password==password)
     attemptedUser ? (
       setUser(attemptedUser),
-      setStep(0)
+      setStep(-2)
     ) : (
       setNoUser(true)
     )
@@ -82,14 +82,13 @@ export default function Register({ setStep, setUser }) {
         password: password,
         email: email,
       };
-      console.log(user);
       fetch("http://localhost:7777/api/users", {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" },
-      }).then((res) => res.json());
-      setStep(0);
-      setUser(user)
+      }).then((res) => res.json())
+        .then(data=>setUser({...user,_id:data._id}))
+      setStep(-2);
     }
   }
 
@@ -107,7 +106,7 @@ export default function Register({ setStep, setUser }) {
           {logIn?"Log in":"Register"}
         </h1>
         <Button title={logIn?"I'm new":"Log in"} action={()=>setLogIn(!logIn)}/>
-        <CardPageStyle style={{ height: "60vh" }}>
+        <CardPageStyle>
           <form action="#" onSubmit={logIn?getUser:formValidation}>
             <h2 style={{ fontWeight: 300, color: "#2c7172" }}>Username</h2>
             <input
