@@ -186,7 +186,7 @@ export default function Register({ setStep, setUser }) {
             </div>
           </form>
         </CardPageStyle>
-        <Button title="back" colour="#144c74" action={()=>setStep(0)}/>
+        <Button title="back" color="#144c74" action={()=>setStep(0)}/>
       </Page>
     </>
   );

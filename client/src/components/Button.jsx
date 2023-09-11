@@ -3,15 +3,15 @@ import styled from "styled-components";
 export default function Button({
   title,
   price="",
-  colour="#2f86c5",
+  color="#2f86c5",
   action,
 }) {
-  if (colour=="grey" || (typeof colour=="object" && colour[title]=="grey")){
+  if (color=="grey" || (typeof color=="object" && color[title]=="grey")){
     action=null
   }
   return (
     <>
-      <ButtonBasic colour={typeof colour=="object" ? colour[title] ? colour[title] : "#2f86c5" : colour} onClick={action}>
+      <ButtonBasic color={typeof color=="object" ? color[title] ? color[title] : "#2f86c5" : color} onClick={action}>
         <p>{title}</p>
         <p style={{fontSize:"11px"}}>{price}</p>
       </ButtonBasic>
@@ -20,8 +20,8 @@ export default function Button({
 }
 
 const ButtonBasic = styled.button`
-  background-color: ${props=>props.colour};
-  color: ${props=>props.colour=="white"?"#2f86c5":"white"};
+  background-color: ${props=>props.color};
+  color: ${props=>props.color=="white"?"#2f86c5":"white"};
   border-style: none;
   padding: 10px;
   font-size: 18px;

@@ -42,7 +42,7 @@ export default function Account({setStep, user, setUser, setOrder}) {
           setStep(0)
         }}/>
       </CardPageStyle>
-      <Button title="back" colour="#144c74" action={()=>setStep(0)}/>
+      <Button title="back" color="#144c74" action={()=>setStep(0)}/>
     </Page>
   </>
 }

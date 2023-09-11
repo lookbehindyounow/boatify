@@ -99,7 +99,7 @@ export default function Checkout({ booking, setBooking, setStep, user }) {
             </p>
           )}
         </CardPageStyle>
-        <Button title="back" colour="#144c74" action={() => setStep(3)} />
+        <Button title="back" color="#144c74" action={() => setStep(3)} />
       </Page>
     </>
   );

@@ -17,12 +17,12 @@ export default function Order({setStep, order}){
           {order.extras.map((extra,i)=><p style={{paddingLeft: "20px"}} key={i}>{extra.quantity} x {extra.name}</p>)}
         </>}
         <br/>
-        <Button title="Delete order" colour="coral" action={()=>{
+        <Button title="Delete order" color="coral" action={()=>{
           fetch(`http://localhost:7777/api/orders/${order._id}`, {method: "DELETE"})
           setStep(-2)
         }}/>
       </CardPageStyle>
-      <Button title="back" colour="#144c74" action={()=>setStep(-2)}/>
+      <Button title="back" color="#144c74" action={()=>setStep(-2)}/>
     </Page>
   </>
 }

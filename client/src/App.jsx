@@ -72,20 +72,20 @@ function App() {
           <>
             <Hero>
               <div>
-                <div2>
+                <section>
                   <h2>AHOY!</h2>
                   <h3>All hands on deck.</h3>
                   <br />
                   <Button
                     title="Book Now"
-                    colour="white"
+                    color="white"
                     action={() =>
                       document
                         .getElementById("bottomOfDaPage")
                         .scrollIntoView({ behavior: "smooth" })
                     }
                   />
-                </div2>
+                </section>
                 <img src="static/boat_img.png" />
               </div>
             </Hero>
@@ -159,7 +159,7 @@ function App() {
                   Your order id is {booking._id}
                 </h2>
               </CardPageStyle>
-              <Button title="Home" colour="#2c7172" action={() => setStep(0)} />
+              <Button title="Home" color="#2c7172" action={() => setStep(0)} />
             </Page>
           </>
         );
@@ -170,10 +170,10 @@ function App() {
     <>
       <Nav>
         <div>
-          <div2>
+          <section>
             <img src="static/logo.svg" onClick={() => setStep(0)} />
             <h1>Boatify</h1>
-          </div2>
+          </section>
           {step == 0 ? (
             <img
               src={
@@ -211,7 +211,7 @@ const Nav = styled.nav`
     margin: 0 auto;
     width: 100%;
     max-width: 1000px;
-    div2 {
+    section {
       display: flex;
       align-items: center;
       h1 {
@@ -241,7 +241,7 @@ const Hero = styled.div`
     margin: 0 auto;
     width: 100%;
     max-width: 1000px;
-    div2 {
+    section {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -259,7 +259,7 @@ const Hero = styled.div`
       height: 20vh;
     }
     @media (min-width: 800px) {
-      div2 {
+      section {
         h2 {
           font-size: 80px;
         }

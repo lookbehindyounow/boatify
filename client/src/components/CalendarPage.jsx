@@ -112,7 +112,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             <Button
               title="Morning"
               price={`£${prices[3]} base + £${prices[0]} per person`}
-              colour={buttonColours}
+              color={buttonColours}
               action={() => {
                 setButtonColours({
                   Morning: "#2c7172",
@@ -128,7 +128,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             <Button
               title="Afternoon"
               price={`£${prices[3]} base + £${prices[1]} per person`}
-              colour={buttonColours}
+              color={buttonColours}
               action={() => {
                 setButtonColours({
                   Morning: buttonColours["Morning"] == "grey" ? "grey" : null,
@@ -143,7 +143,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             <Button
               title="Full day"
               price={`£${prices[3]} base + £${prices[2]} per person`}
-              colour={buttonColours}
+              color={buttonColours}
               action={() => {
                 setButtonColours({
                   Morning: buttonColours["Morning"] == "grey" ? "grey" : null,
@@ -160,7 +160,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
         <div style={{ display: "flex", gap: "1rem", marginTop: "5px" }}>
           <Button
             title="back"
-            colour="#144c74"
+            color="#144c74"
             action={() => {
               setStep(0);
               setBooking({});
@@ -169,7 +169,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
           />
           <Button
             title="next"
-            colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
+            color={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
             action={() => setStep(2)}
           />
         </div>
