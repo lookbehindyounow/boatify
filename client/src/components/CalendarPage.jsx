@@ -101,7 +101,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
               maxWidth: "100%"
             }}
           >
- <Button
+         <Button
               title="Morning"
               price={`£${prices[3]} base + £${prices[0]} per person`}
               colour={buttonColours}
