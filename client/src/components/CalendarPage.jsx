@@ -71,20 +71,20 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
     setBooking({ ...rest, date: value });
   }, [value]);
 
-  const tileDisabled = ({ date }) => {
-    return fullyTakenDates.find(
-      (dDate) =>
-        dDate.getDate() == date.getDate() &&
-        dDate.getFullYear() == date.getFullYear() &&
-        dDate.getMonth() == date.getMonth()
-    );
+  const tileDisabled = ({ activeStartDate, date, view }) => {
+    return fullyTakenDates.find((takenDate) => {
+      return (
+        takenDate.getDate() == date.getDate() &&
+        takenDate.getFullYear() == date.getFullYear() &&
+        takenDate.getMonth() == date.getMonth() &&
+        view === "month"
+      );
+    });
   };
   return (
     <>
       <Page>
-        <h2
-          style={{ fontSize: "35px", color: "#64b2d4" }}
-        >
+        <h2 style={{ fontSize: "35px", color: "#64b2d4" }}>
           It's time to rig it up
         </h2>
         <CardPageStyle>
