@@ -30,6 +30,9 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
         setFullyTakenDates(
           data
             .filter((date) => {
+              if (data.morning && data.afternoon) {
+                return true;
+              }
               for (let i = 0; i < data.length; i++) {
                 if (data[i].date == date.date && date != data[i]) {
                   return true;
@@ -44,7 +47,9 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   }, []);
 
   useEffect(() => {
-    const selected = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
+    const selected = `${value.getFullYear()}-${
+      value.getMonth() + 1
+    }-${value.getDate()}`;
     const todaysBooking = takenDates.filter((slot) => slot.date == selected)[0];
     if (todaysBooking) {
       todaysBooking.morning &&
@@ -63,7 +68,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
       setButtonColours({ Morning: null, Afternoon: null, "Full day": null });
     }
     const { morning, afternoon, ...rest } = booking;
-    setBooking({...rest,date:value});
+    setBooking({ ...rest, date: value });
     console.log(booking);
   }, [value]);
 
@@ -78,7 +83,10 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
   return (
     <>
       <Page>
-        <h2 style={{ fontSize: "35px", color: "#64b2d4" }} onClick={()=>console.log(booking)}>
+        <h2
+          style={{ fontSize: "35px", color: "#64b2d4" }}
+          onClick={() => console.log(booking)}
+        >
           It's time to rig it up
         </h2>
         <CardPageStyle>
@@ -98,10 +106,10 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
               display: "flex",
               marginTop: "5px",
               gap: "10px",
-              maxWidth: "100%"
+              maxWidth: "100%",
             }}
           >
-         <Button
+            <Button
               title="Morning"
               price={`£${prices[3]} base + £${prices[0]} per person`}
               colour={buttonColours}
@@ -149,22 +157,22 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             />
           </div>
         </CardPageStyle>
-      <div style={{display: "flex", gap: "1rem", marginTop: "5px"}}>
-        <Button
-          title="back"
-          colour="#144c74"
-          action={() => {
-              setStep(0)
-              setBooking({})
-              console.log(`after back: ${ booking }`)
-          }}
-        />
-      <Button
-      title="next"
-      colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
-      action={() => setStep(2)}
-      />
-      </div>
+        <div style={{ display: "flex", gap: "1rem", marginTop: "5px" }}>
+          <Button
+            title="back"
+            colour="#144c74"
+            action={() => {
+              setStep(0);
+              setBooking({});
+              console.log(`after back: ${booking}`);
+            }}
+          />
+          <Button
+            title="next"
+            colour={booking.morning || booking.afternoon ? "#2f86c5" : "grey"}
+            action={() => setStep(2)}
+          />
+        </div>
       </Page>
     </>
   );
