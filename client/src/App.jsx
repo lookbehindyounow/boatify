@@ -65,12 +65,14 @@ function App() {
           <>
             <Hero>
               <div>
-                <h2>AHOY!</h2>
-                <h3>All hands on deck.</h3>
-                <br />
-                <Button title="Book Now" colour="white" />
+                <div2>
+                  <h2>AHOY!</h2>
+                  <h3>All hands on deck.</h3>
+                  <br />
+                  <Button title="Book Now" colour="white" />
+                </div2>
+                <img src="static/boat_img.png" />
               </div>
-              <img src="static/boat_img.png" />
             </Hero>
             <Cards
               destinations={destinations}
@@ -136,109 +138,123 @@ function App() {
 
   return (
     <>
-      <Desktop>
-        <Container>
-          <Nav>
+      <Nav>
+        <div>
+          <div2>
             <img src="static/logo.svg" />
             <h1>Boatify</h1>
-            {step == 0 ? (
-              <img
-                style={{ position: "absolute", marginLeft: "78%", ...(window.innerWidth >= 800 && { marginLeft: "92%" })}}
-                // style={{position: "absolute", marginLeft: "calc(100vw - 10.2vh", borderRadius: "50%"}}
-                src={user?"static/account_icon.png":"static/register_icon.png"}
-                onClick={() => setStep(user?-2:-1)}
-              />
-            ) : null}
-          </Nav>
-          {renderSwitch(step)}
-          <Footer>
-            <div style={{width: "50%"}}><h3 style={{color: "#f0f8fa", fontSize: "20px"}}>Making memories, one wave at a time.</h3></div>
-            <img style={{width: "70px"}} src="static/logo-inverted.png" />
-          </Footer>
-        </Container>
-      </Desktop>
+          </div2>
+          {step == 0 ? (
+            <img
+              src={user?"static/account_icon.png":"static/register_icon.png"}
+              onClick={() => setStep(user?-2:-1)}
+            />
+          ) : null}
+        </div>
+      </Nav>
+      <div>{renderSwitch(step)}</div>
+      <Footer>
+        <div>
+          <h3 style={{color: "#f0f8fa", fontSize: "20px"}}>Making memories, one wave at a time.</h3>
+          <img src="static/logo-inverted.png" />
+        </div>
+      </Footer>
     </>
   );
 }
 
 export default App;
 
-const Desktop = styled.div`
-  @media (min-width: 800px) {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-const Container = styled.div`
-  @media (min-width: 800px) {
-    width: 1000px;
-    heigth: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
 const Nav = styled.nav`
-            display: flex;
-            position: fixed;
-            align-items: center;
-            background-color: #f0f8fa;
-            width: 100%;
-            height: 12vh; 
-            img {
-              border-radius: 50%;
-            height: 70%; // times (100% - this)/2
-            margin: 1.8vh; // is how I've decided this (so it has the same vertical & horizontal margins)
-            }
-            h1 {
-              color: #144c74;
-            font-size: 40px;
-            };
-            @media (min-width: 800px) { 
-              width: 1000px
-            }
-            `;
-
-const Hero = styled.div`
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background-color: #64b2d4;
-            height: 50vh;
-            padding-top: 12vh;
-            margin-bottom: 10px;
-            div {
-              display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            h2 {
-              font-size: 50px;
+  height: 12vh; 
+  background-color: #f0f8fa;
+  position: fixed;
+  width: 100%;
+  div {
+    justify-content: space-between;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    div2 {
+      display: flex;
+      align-items: center;
+      h1 {
+        color: #144c74;
+        font-size: 40px;
+      };
+    }
+    img {
+      height: 8.4vh;
+      border-radius: 50%;
+      margin: 1.8vh;
     }
   }
-            img {
-              height: 40%;
+`;
+
+const Hero = styled.div`
+  padding-top: 12vh;
+  background-color: #64b2d4;
+  width: 100%;
+  height: 50vh;
+  margin-bottom: 10px;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    div2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      h2 {
+        font-size: 50px;
+      }
+    }
+    img {
+      height: 20vh;
+    }
+    @media (min-width: 800px) {
+      div2 {
+        h2 {
+          font-size: 80px;
+        }
+        h3 {
+          font-size: 30px;
+        }
+      }
+      img {
+        height: 30vh
+      }
+    }
   }
-            @media (min-width: 800px) {
-              width: 100%
-  }
-            `;
+`;
 
 const Footer = styled.div`
-  display: flex;
-  margin-top: 50px;
-  align-items: center;
-  background-color: #144c74;
-justify-content: space-around;
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  height: 12vh;
-  @media (min-width: 800px) {
-    width: 1000px;
+  background-color: #144c74;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    height: 12vh;
+    h3 {
+      margin-left: 1.8vh;
+    }
+    img {
+      height: 8.4vh;
+      border-radius: 50%;
+      margin: 1.8vh;
+    }
   }
 `;

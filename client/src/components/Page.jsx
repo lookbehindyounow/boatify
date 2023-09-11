@@ -7,7 +7,7 @@ const Page = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: calc(12vh + 10px);
 `;
 
 export default Page
