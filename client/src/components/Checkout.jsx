@@ -62,15 +62,15 @@ export default function Checkout({booking,setBooking,setStep,user}) {
       <h2 style={{ fontSize: "35px", color: "#64b2d4", textAlign: "center" }}>
         Fair weather and following seas
       </h2>
-      <CardPageStyle>
+      <CardPageStyle >
         <label onClick={pay} htmlFor="email" style={{color: "#144c74"}}>Please enter your email address:</label>
         <br/>
-        <input id="email" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+        <input  id="email" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
         <br/>
         <br/>
         {emailValid?
           <p onClick={pay}>
-            <PayPalScriptProvider>
+            <PayPalScriptProvider >
               <PayPalButtons disabled={true}/>
             </PayPalScriptProvider>
           </p>
