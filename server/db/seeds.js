@@ -48,53 +48,6 @@ db.extras.insertMany([
     price:10
   }
 ])
-db.orders.insertMany([
-  {
-    location: "Cala Pi de la Posada",
-    morning:true,
-    passengers: 2,
-    price: 125,
-    date: "2024-6-1" ,
-    extras: [{
-      name:"champagne",
-      quantity:1
-    }]
-  },
-  {
-    location: "Cala Pi de la Posada",
-    morning:true,
-    passengers: 6,
-    price: 125,
-    date: "2024-1-1" ,
-    extras: [{
-      name:"champagne",
-      quantity:1
-    }]
-  },
-  {
-    location: "Cala Pi de la Posada",
-    afternoon:true,
-    passengers: 8,
-    price: 125,
-    date: "2024-8-3" ,
-    extras: [{
-      name:"champagne",
-      quantity:1
-    }]
-  },
-  {
-    location: "Cala Pi de la Posada",
-    afternoon:true,
-    passengers: 6,
-    price: 125,
-    date: "2024-1-1" ,
-    extras: [{
-      name:"champagne",
-      quantity:1
-    }]
-  }
-])
-
 db.users.insertMany([
   {
     username: "Elon Musk",
@@ -107,3 +60,97 @@ db.users.insertMany([
     email: "amazon@rocket.pr"
   }
 ])
+const userIdFinder = (username)=>{
+  const foundUser = db.users.findOne({username: username},{_id:1})
+  return foundUser._id
+}
+
+db.orders.insertMany([
+  {
+    location: "Cala Pi de la Posada",
+    morning:true,
+    passengers: 2,
+    price: 125,
+    date: "2024-6-1" ,
+    extras: [{
+      name:"Champagne",
+      quantity:1
+    }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    morning:true,
+    passengers: 6,
+    price: 125,
+    date: "2024-1-1" ,
+    extras: [{
+      name:"Champagne",
+      quantity:1
+    }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    afternoon:true,
+    passengers: 8,
+    price: 125,
+    date: "2024-8-3" ,
+    extras: [{
+      name:"Champagne",
+      quantity:1
+    }]
+  },
+  {
+    location: "Cala Pi de la Posada",
+    afternoon:true,
+    passengers: 6,
+    price: 125,
+    date: "2024-1-1" ,
+    extras: [{
+      name:"Champagne",
+      quantity:1
+    }]
+  },{
+    location: "Cala Pi de la Posada",
+    morning:true,
+    passengers: 2,
+    price: 125,
+    date: "2023-9-13" ,
+    extras: [{
+      name:"Champagne",
+      quantity:1
+    },{
+      name:"Bacon Roll",
+      quantity:1
+    }]
+  },{
+    location: "Cala Pi de la Posada",
+    morning:true,
+    passengers: 2,
+    price: 250,
+    date: "2023-9-14" ,
+    extras: [{
+      name:"Bucket of Beers",
+      quantity:2
+    },{
+      name:"Ice Lollies",
+      quantity:5
+    }],
+    userId:userIdFinder("Elon Musk")
+  },{
+    location: "Cala Sant Vicenc",
+    morning:true,
+    afternoon:true,
+    passengers: 5,
+    price: 80000,
+    date: "2023-9-12" ,
+    extras: [{
+      name:"Bucket of Beers",
+      quantity:2
+    },{
+      name:"Ice Lollies",
+      quantity:5
+    }],
+    userId:userIdFinder("Jeff Bezos")
+  },
+])
+
