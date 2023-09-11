@@ -30,7 +30,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
         setFullyTakenDates(
           data
             .filter((date) => {
-              if (data.morning && data.afternoon) {
+              if (date.morning && date.afternoon) {
                 return true;
               }
               for (let i = 0; i < data.length; i++) {
