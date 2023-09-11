@@ -130,22 +130,21 @@ export default function Summary({ booking, setBooking, setStep }) {
 }
 
 const SummaryPage = styled.div`
-  padding-top: 12vh;
+  padding: 12vh 0;
   display: flex;
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  @media (min-width: 800px){ 
-    max-width: 1000px;
-  }
+  /* width: 100%;
+  max-width: 1000px; */
 `;
 
 const SummaryTitle = styled.h1`
   align-self: center;
   font-size: 52px;
   color: #144c74;
-  margin-top: 10vh;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 `;
 
 const SummaryBlock = styled.div`

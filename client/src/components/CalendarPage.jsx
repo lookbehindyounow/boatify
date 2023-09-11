@@ -81,7 +81,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
         <h2 style={{ fontSize: "35px", color: "#64b2d4" }} onClick={()=>console.log(booking)}>
           It's time to rig it up
         </h2>
-        <br />
         <CardPageStyle>
           <h4 style={{ marginBottom: "20px" }}>Pick your date</h4>
           <CalendarPageStyle>
@@ -97,11 +96,9 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
           <div
             style={{
               display: "flex",
-              width: "100%",
               marginTop: "5px",
-              gap: "5px",
-              justifyContent: "space-between",
-              ...(window.innerWidth >= 800 && { width: "70%" })
+              gap: "10px",
+              maxWidth: "100%"
             }}
           >
             <Button
@@ -152,7 +149,7 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             />
           </div>
         </CardPageStyle>
-      <div style={{display: "flex", gap: "1rem"}}>
+      <div style={{display: "flex", gap: "1rem", marginTop: "5px"}}>
         <Button
           title="back"
           colour="#144c74"
@@ -180,7 +177,4 @@ const CalendarPageStyle = styled.section`
   align-items: center;
   width: 100%;
   justify-content: space-around;
-  @media (min-width: 800px) { 
-    width: 800px
-  }
 `;

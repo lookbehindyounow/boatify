@@ -32,7 +32,7 @@ export default function Card({ destination, setStep, setBooking, imageRef }) {
             >
               from
             </p>
-            <Price>£{destination.price_morning}</Price>
+            <Price>£{destination.price_morning+destination.price_base}</Price>
           </div>
         </BottomBlock>
       </CardBlock>

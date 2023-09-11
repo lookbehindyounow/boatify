@@ -9,6 +9,8 @@ import Checkout from "./components/Checkout";
 import Register from "./components/Register";
 import Account from "./components/Account";
 import Order from "./components/Order";
+import Page from "./components/Page";
+import CardPageStyle from "./components/CardPageStyle";
 
 function App() {
   useEffect(() => {
@@ -69,7 +71,7 @@ function App() {
                   <h2>AHOY!</h2>
                   <h3>All hands on deck.</h3>
                   <br />
-                  <Button title="Book Now" colour="white" />
+                  <Button title="Book Now" colour="white" action={()=>document.getElementById("bottomOfDaPage").scrollIntoView({ behavior: "smooth" })}/>
                 </div2>
                 <img src="static/boat_img.png" />
               </div>
@@ -79,6 +81,7 @@ function App() {
               setStep={setStep}
               setBooking={setBooking}
             />
+            <p id="bottomOfDaPage"></p>
           </>
         );
       case 1:
@@ -129,8 +132,13 @@ function App() {
       case 5:
         return (
           <>
-            <div style={{paddingTop:"12vh"}}>thank you for booking here is your book id {booking._id}</div>
-            <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
+            <Page>
+              <CardPageStyle>
+                <h2 style={{color: "#2f86c5"}}>Thank you for your booking!</h2>
+                <h2 style={{color: "#2f86c5"}}>Your order id is {booking._id}</h2>
+              </CardPageStyle>
+              <Button title="Home" colour="#2c7172" action={()=>setStep(0)}/>
+            </Page>
           </>
         );
     }
@@ -168,6 +176,7 @@ export default App;
 const Nav = styled.nav`
   height: 12vh; 
   background-color: #f0f8fa;
+  z-index: 1;
   position: fixed;
   width: 100%;
   div {
@@ -213,6 +222,11 @@ const Hero = styled.div`
       color: white;
       h2 {
         font-size: 50px;
+      }
+      @media (min-width: 1000px) {
+        button {
+          display: none;
+        }
       }
     }
     img {

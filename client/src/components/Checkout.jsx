@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CardPageStyle from "./CardPageStyle";
 import Page from "./Page"
+import Button from "./Button";
 import {
   PayPalScriptProvider,
   PayPalButtons
@@ -30,6 +31,7 @@ export default function Checkout({booking,setBooking,setStep,user}) {
   },[emailValid])
 
   const pay = ()=>{
+    console.log("BOOKED")
     const {location,passengers,total,morning,afternoon,date,extras} = booking
     const databaseBooking = {email,location,passengers,price:total,date:`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`}
     if (morning){
@@ -61,7 +63,7 @@ export default function Checkout({booking,setBooking,setStep,user}) {
         Fair weather and following seas
       </h2>
       <CardPageStyle>
-        <label htmlFor="email" style={{color: "#144c74"}}>Please enter your email address:</label>
+        <label onClick={pay} htmlFor="email" style={{color: "#144c74"}}>Please enter your email address:</label>
         <br/>
         <input id="email" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
         <br/>
@@ -74,6 +76,7 @@ export default function Checkout({booking,setBooking,setStep,user}) {
           </p>
         :null}
       </CardPageStyle>
+      <Button title="back" colour="#144c74" action={()=>setStep(3)}/>
     </Page>
   </>
 }
