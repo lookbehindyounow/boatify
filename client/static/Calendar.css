@@ -98,6 +98,9 @@
   background: none;
   text-align: center;
   line-height: 49px;
+  @media (min-width: 800px) {
+    line-height: 5vh;
+  }
 
 }
 
