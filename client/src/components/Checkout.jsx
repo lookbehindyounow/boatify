@@ -33,7 +33,6 @@ export default function Checkout({ booking, setBooking, setStep, user }) {
   }, [emailValid]);
 
   const pay = () => {
-    console.log("BOOKED");
     const { location, passengers, total, morning, afternoon, date, extras } =
       booking;
     const databaseBooking = {

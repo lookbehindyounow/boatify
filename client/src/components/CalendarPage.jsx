@@ -69,7 +69,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
     }
     const { morning, afternoon, ...rest } = booking;
     setBooking({ ...rest, date: value });
-    console.log(booking);
   }, [value]);
 
   const tileDisabled = ({ date }) => {
@@ -85,7 +84,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
       <Page>
         <h2
           style={{ fontSize: "35px", color: "#64b2d4" }}
-          onClick={() => console.log(booking)}
         >
           It's time to rig it up
         </h2>
@@ -122,7 +120,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
                     buttonColours["Full day"] == "grey" ? "grey" : null,
                 });
                 setBooking({ ...booking, morning: true, afternoon: false });
-                console.log({ ...booking, morning: true, afternoon: false });
               }}
             />
             <Button
@@ -137,7 +134,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
                     buttonColours["Full day"] == "grey" ? "grey" : null,
                 });
                 setBooking({ ...booking, morning: false, afternoon: true });
-                console.log({ ...booking, morning: false, afternoon: true });
               }}
             />
             <Button
@@ -152,7 +148,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
                   "Full day": "#2c7172",
                 });
                 setBooking({ ...booking, morning: true, afternoon: true });
-                console.log({ ...booking, morning: true, afternoon: true });
               }}
             />
           </div>
@@ -164,7 +159,6 @@ function CalendarPage({ booking, setBooking, setStep, prices }) {
             action={() => {
               setStep(0);
               setBooking({});
-              console.log(`after back: ${booking}`);
             }}
           />
           <Button

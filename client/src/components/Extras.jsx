@@ -63,10 +63,6 @@ export default function Extras({ booking, setBooking, setStep }) {
                       ...booking,
                       passengers: Number(e.target.value),
                     });
-                    console.log("booking:", {
-                      ...booking,
-                      passengers: Number(e.target.value),
-                    });
                   }
                 }}
               />
@@ -91,14 +87,9 @@ export default function Extras({ booking, setBooking, setStep }) {
                         ...bookingExtras,
                         [extra.name]: Number(e.target.value),
                       });
-                      console.log("bookingExtras:", {
-                        ...bookingExtras,
-                        [extra.name]: Number(e.target.value),
-                      });
                     } else {
                       const { [extra.name]: toRemove, ...rest } = bookingExtras; // destructuring an object creates variables, which can't have dynamic names, so when destructuring an object with dynamic keys we have to explicitly define variable names, hence [extra.name]:toRemove
                       setBookingExtras(rest); // then setting booking to everything apart from the extra that was just set to 0
-                      console.log("bookingExtras:", rest);
                     }
                   }}
                 />
@@ -112,7 +103,6 @@ export default function Extras({ booking, setBooking, setStep }) {
             color="#144c74"
             action={() => {
               setStep(1);
-              console.log(booking);
             }}
           />
           <Button title="next" action={() => {

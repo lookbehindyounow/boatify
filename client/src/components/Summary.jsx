@@ -10,8 +10,6 @@ export default function Summary({ booking, setBooking, setStep }) {
 
   const [extras, setExtras] = useState([]);
   const [locationObject, setLocationObject] = useState([]);
-  console.log(booking);
-  console.log(locationObject);
 
   const fetchingExtras = async () => {
     const res = await fetch(`http://localhost:7777/api/extras`);
@@ -53,11 +51,6 @@ export default function Summary({ booking, setBooking, setStep }) {
     let itemsNames = [];
     for (const [key, value] of Object.entries(booking.extras)) {
       if (extras.length) {
-        console.log(
-          extras,
-          key,
-          extras.find((extra) => extra.name == key)
-        );
         const extraPrice =
           extras.find((extra) => extra.name == key).price * value;
         total += extraPrice;
@@ -112,7 +105,6 @@ export default function Summary({ booking, setBooking, setStep }) {
             color="#144c74"
             action={() => {
               setStep(2);
-              console.log(booking);
             }}
           />
           <Button

@@ -64,7 +64,6 @@ export default function Register({ setStep, setUser }) {
 
     let checkSpecial = 0;
     for (let i = 0; i < specialChar.length; i++) {
-      console.log(password);
       password.includes(specialChar[i]) ? checkSpecial++ : null;
     }
     checkSpecial < 1 ? setSpecial(0) : setSpecial(1);
@@ -123,7 +122,6 @@ export default function Register({ setStep, setUser }) {
                 setNoUser(false)
                 const value = e.target.value;
                 setUsername(value);
-                console.log(`username input :${username}`);
               }}
             />
             {userEmpty ? (
